@@ -2,12 +2,13 @@
 /**
  * scripts/fetch-monthly.js
  *
- * 한국수자원공사 상수도법정수질정보 (qltWtrSvc/MonPurification) API 호출.
+ * 한국수자원공사 상수도법정수질정보 (qltWtrSvc/MonPurification) API.
  *
- * NIER 경험상 응답 구조가 가이드 문서와 다를 수 있어 유연한 파서 사용:
- *   - 루트 키: 'response' / 오퍼레이션명('MonPurification') / 무엇이든
- *   - items: items.item / item / items 어느 것이든
- *   - 필드명: 대문자 우선 (HR, PH, FE 등)
+ * 시군별로 다양한 검색 변형(queries) 순회:
+ *   - 시도명 변경 대응 (전라북도/전북특별자치도 등 2024년 이후 변경분)
+ *   - 광역수도사업자 관할 정수장 대응 (안성 → 평택광역 등)
+ *   - 일치하는 정수장명 필터링 (facilityHint)
+ *   - 마지막 보루: BSI 없이 SIGUN만, 또는 BSI만 + 응답 필터
  */
 
 import fs from 'node:fs/promises';
@@ -20,9 +21,38 @@ if (!SERVICE_KEY) {
 }
 
 const REGIONS = [
-  { regionId: 'anseong',  BSI: '경기도',   SIGUN: '안성시', source: '한국수자원공사 상수도법정수질정보 (안성시)' },
-  { regionId: 'jeongeup', BSI: '전라북도', SIGUN: '정읍시', source: '한국수자원공사 상수도법정수질정보 (정읍시)' },
-  { regionId: 'andong',   BSI: '경상북도', SIGUN: '안동시', source: '한국수자원공사 상수도법정수질정보 (안동시)' }
+  {
+    regionId: 'anseong',
+    queries: [
+      // 우선순위 순서대로 시도
+      { BSI: '경기도', SIGUN: '안성시' },
+      // 안성정수장이 평택광역상수도 관할로 등록되어 있을 가능성
+      { BSI: '경기도', SIGUN: '평택시', facilityHint: ['안성', '평택'] },
+      // 시도명만으로 시도하고 응답에서 시군구 필터
+      { BSI: '경기도', sigunguFilter: '안성' },
+      { SIGUN: '안성시' }
+    ],
+    source: '한국수자원공사 상수도법정수질정보 (안성시)'
+  },
+  {
+    regionId: 'jeongeup',
+    queries: [
+      // 2024년 1월 18일 이후 변경된 새 명칭 우선
+      { BSI: '전북특별자치도', SIGUN: '정읍시' },
+      { BSI: '전라북도', SIGUN: '정읍시' },
+      { BSI: '전북특별자치도', sigunguFilter: '정읍' },
+      { BSI: '전라북도', sigunguFilter: '정읍' },
+      { SIGUN: '정읍시' }
+    ],
+    source: '한국수자원공사 상수도법정수질정보 (정읍시)'
+  },
+  {
+    regionId: 'andong',
+    queries: [
+      { BSI: '경상북도', SIGUN: '안동시' }
+    ],
+    source: '한국수자원공사 상수도법정수질정보 (안동시)'
+  }
 ];
 
 function num(v) {
@@ -35,7 +65,6 @@ function num(v) {
   return Number.isFinite(n) ? n : null;
 }
 
-// 대문자 우선, 소문자 fallback
 function field(item, ...keys) {
   for (const k of keys) {
     if (item[k] !== undefined && item[k] !== null) return item[k];
@@ -43,14 +72,11 @@ function field(item, ...keys) {
   return null;
 }
 
-// 응답 어디에 items가 있든 찾아냄
 function extractItems(json) {
-  // 직접 알려진 키부터
   const candidates = [
     json?.response?.body?.items?.item,
     json?.response?.body?.items,
     json?.response?.body?.item,
-    json?.response?.item,
     json?.MonPurification?.item,
     json?.MonPurification?.items?.item,
     json?.body?.items?.item,
@@ -60,11 +86,8 @@ function extractItems(json) {
     json?.items
   ];
   for (const c of candidates) {
-    if (c) {
-      return Array.isArray(c) ? c : [c];
-    }
+    if (c) return Array.isArray(c) ? c : [c];
   }
-  // 못 찾으면 객체를 깊이 탐색
   function deepFind(obj, depth = 0) {
     if (depth > 5 || !obj || typeof obj !== 'object') return null;
     if (Array.isArray(obj)) return null;
@@ -81,15 +104,24 @@ function extractItems(json) {
   return deepFind(json) || [];
 }
 
+function extractTotalCount(json) {
+  const candidates = [
+    json?.response?.body?.totalCount,
+    json?.response?.body?.itemsInfo?.totalCount,
+    json?.MonPurification?.totalCount,
+    json?.totalCount
+  ];
+  for (const c of candidates) {
+    if (c !== undefined && c !== null) return Number(c);
+  }
+  return null;
+}
+
 function extractHeader(json) {
-  return json?.response?.header
-      || json?.MonPurification?.header
-      || json?.header
-      || {};
+  return json?.response?.header || json?.MonPurification?.header || json?.header || {};
 }
 
 function prevMonthsKST(months) {
-  // 최근 N개월 [{year, month}, ...] 최신순
   const out = [];
   const d = new Date(Date.now() + 9 * 3600 * 1000);
   d.setDate(1);
@@ -100,20 +132,24 @@ function prevMonthsKST(months) {
   return out;
 }
 
-async function fetchRegionForMonth({ regionId, BSI, SIGUN, source }, year, month) {
+async function fetchWithQuery(regionId, query, year, month) {
   const params = new URLSearchParams({
     viewType: 'json',
     pageNo: '1',
+    numOfRows: '100',
     year, month,
-    BSI, SIGUN,
     serviceKey: SERVICE_KEY
   });
+  if (query.BSI) params.set('BSI', query.BSI);
+  if (query.SIGUN) params.set('SIGUN', query.SIGUN);
+
   const url = `http://apis.data.go.kr/B500001/qltWtrSvc/MonPurification?${params}`;
+  const tag = `${query.BSI || '*'}/${query.SIGUN || query.sigunguFilter || '*'}`;
 
   try {
     const res = await fetch(url, { signal: AbortSignal.timeout(30000) });
     if (!res.ok) {
-      console.error(`[${regionId}] ${year}-${month} HTTP ${res.status}`);
+      console.error(`[${regionId}] ${year}-${month} (${tag}) HTTP ${res.status}`);
       return null;
     }
     const text = await res.text();
@@ -122,7 +158,7 @@ async function fetchRegionForMonth({ regionId, BSI, SIGUN, source }, year, month
     try {
       json = JSON.parse(text);
     } catch (e) {
-      console.error(`[${regionId}] ${year}-${month} JSON parse failed: ${text.slice(0, 200)}`);
+      console.error(`[${regionId}] ${year}-${month} (${tag}) JSON parse failed`);
       return null;
     }
 
@@ -135,19 +171,33 @@ async function fetchRegionForMonth({ regionId, BSI, SIGUN, source }, year, month
     const header = extractHeader(json);
     const code = header.resultCode || header.code;
     if (code && code !== '00' && code !== '0') {
-      console.error(`[${regionId}] ${year}-${month} API code ${code}: ${header.resultMsg || header.message}`);
+      console.error(`[${regionId}] ${year}-${month} (${tag}) API code ${code}`);
       return null;
     }
 
-    const items = extractItems(json);
+    let items = extractItems(json);
+    const totalCount = extractTotalCount(json);
+
+    // sigunguFilter 또는 facilityHint로 후처리 필터
+    if (items.length > 0 && query.sigunguFilter) {
+      items = items.filter(it => {
+        const sigungu = String(field(it, 'SIGNGU_NM', 'signguNm') || '');
+        return sigungu.includes(query.sigunguFilter);
+      });
+    }
+    if (items.length > 0 && query.facilityHint && Array.isArray(query.facilityHint)) {
+      items = items.filter(it => {
+        const facility = String(field(it, 'FCLT_NAM', 'fcltNam') || '');
+        return query.facilityHint.some(h => facility.includes(h));
+      });
+    }
+
     if (items.length === 0) {
-      // 데이터 없음은 일반적임 (해당월에 검사 안 했을 수 있음)
-      console.log(`[${regionId}] ${year}-${month} no items`);
+      console.log(`[${regionId}] ${year}-${month} (${tag}) no matched items (totalCount=${totalCount ?? '?'})`);
       return null;
     }
 
     const it = items[0];
-
     const collDat = String(field(it, 'COLL_DAT', 'collDat') || '');
     const periodStr = collDat.length >= 6
       ? `${collDat.slice(0, 4)}-${collDat.slice(4, 6)}`
@@ -158,7 +208,6 @@ async function fetchRegionForMonth({ regionId, BSI, SIGUN, source }, year, month
       period: periodStr,
       facility: field(it, 'FCLT_NAM', 'fcltNam') || null,
       collectedAt: collDat ? `${collDat.slice(0,4)}-${collDat.slice(4,6)}-${collDat.slice(6,8)}` : null,
-      // 한국 수도법 수질검사 필드 (기술문서 명세 + 대소문자 양쪽 대응)
       hardness:  num(field(it, 'HR', 'hr')),
       ph:        num(field(it, 'PH', 'ph')),
       cu:        num(field(it, 'CU', 'cu')),
@@ -177,25 +226,28 @@ async function fetchRegionForMonth({ regionId, BSI, SIGUN, source }, year, month
       so:        num(field(it, 'SO', 'so')),
       re:        num(field(it, 'RE', 're')),
       kmn:       num(field(it, 'KMN', 'kmn')),
-      ca: null, mg: null, ec: null,  // 한국 수도법 검사 항목 아님
-      source,
+      ca: null, mg: null, ec: null,
+      source: REGIONS.find(r => r.regionId === regionId).source,
       inspector: field(it, 'INORG_NAM', 'inorgNam') || null,
-      publishedAt: field(it, 'UPDATE_DAT', 'updateDat') || null
+      publishedAt: field(it, 'UPDATE_DAT', 'updateDat') || null,
+      matchedQuery: tag  // 디버깅: 어떤 검색 조합이 통했는지
     };
-    console.log(`[${regionId}] ${year}-${month} OK: HR=${result.hardness}, Fe=${result.fe}, Pb=${result.pb} (${result.facility})`);
+    console.log(`[${regionId}] ${year}-${month} (${tag}) OK: HR=${result.hardness}, Fe=${result.fe}, Pb=${result.pb} (${result.facility})`);
     return result;
   } catch (e) {
-    console.error(`[${regionId}] ${year}-${month} exception: ${e.message}`);
+    console.error(`[${regionId}] ${year}-${month} (${tag}) exception: ${e.message}`);
     return null;
   }
 }
 
 async function fetchRegion(region) {
-  // 전월부터 거꾸로 최대 6개월까지 시도 (월간 데이터 공개 지연 대응)
-  const candidates = prevMonthsKST(6);
-  for (const { year, month } of candidates) {
-    const r = await fetchRegionForMonth(region, year, month);
-    if (r) return r;
+  // 최근 12개월 시도. 각 월마다 모든 query 변형 시도.
+  const months = prevMonthsKST(12);
+  for (const { year, month } of months) {
+    for (const query of region.queries) {
+      const r = await fetchWithQuery(region.regionId, query, year, month);
+      if (r) return r;
+    }
   }
   return null;
 }
@@ -213,7 +265,7 @@ async function main() {
     console.log(`Starting fresh monthly.json: ${e.code || e.message}`);
   }
 
-  console.log(`[monthly] Fetching latest available month per region...`);
+  console.log(`[monthly] Fetching latest available month per region (with query variants)...`);
   const results = await Promise.all(REGIONS.map(fetchRegion));
   const fetched = results.filter(Boolean);
   console.log(`[monthly] Fetched ${fetched.length}/${REGIONS.length} regions`);
