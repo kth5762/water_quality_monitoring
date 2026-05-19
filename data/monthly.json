@@ -1,1 +1,32 @@
-[]
+[
+  {
+    "region": "andong",
+    "period": "2026-04",
+    "facility": "용상1",
+    "collectedAt": "2026-04-07",
+    "hardness": 75,
+    "ph": 7.3,
+    "cu": 0,
+    "zn": 0.002,
+    "pb": 0,
+    "fe": 0,
+    "mn": 0,
+    "as_": 0,
+    "cd": 0,
+    "hg": 0,
+    "cr": 0,
+    "al": 0.03,
+    "turbidity": 0.05,
+    "rc": 1.12,
+    "cl": 16.4,
+    "so": 17,
+    "re": 123,
+    "kmn": 2.7,
+    "ca": null,
+    "mg": null,
+    "ec": null,
+    "source": "한국수자원공사 상수도법정수질정보 (안동시)",
+    "inspector": "경북-보건환경연구원",
+    "publishedAt": "2026-04-28"
+  }
+]
