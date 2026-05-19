@@ -1,0 +1,44 @@
+name: Fetch Extras (Dam WQ + NIER Lake)
+
+on:
+  schedule:
+    # 매주 월요일 KST 09:00 (UTC 00:00) - 호소수/댐 수질은 월간 갱신이라 자주 안 함
+    - cron: '0 0 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Fetch 다목적댐 수질 (odcloud)
+        env:
+          DATA_GO_KR_KEY: ${{ secrets.DATA_GO_KR_KEY }}
+        run: node scripts/fetch-dam-wq.js
+        continue-on-error: true
+
+      - name: Fetch NIER 호소수 측정망
+        env:
+          DATA_GO_KR_KEY: ${{ secrets.DATA_GO_KR_KEY }}
+        run: node scripts/fetch-nier-lake.js
+        continue-on-error: true
+
+      - name: Commit if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/dam-wq.json data/lake-monthly.json 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "No changes"
+          else
+            git commit -m "chore(extras): $(TZ=Asia/Seoul date +'%Y-%m-%d %H:%M KST')"
+            git push
+          fi
