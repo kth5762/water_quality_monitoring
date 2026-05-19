@@ -1,20 +1,9 @@
 #!/usr/bin/env node
 /**
- * scripts/fetch-data.js
+ * scripts/fetch-data.js (디버깅 강화판)
  *
- * 환경부 국립환경과학원 수질자동측정망(getRealTimeWaterQualityList) API를 호출하여
- * 정읍·안동·안성 인근 자동측정소의 최신 수질을 받아 data/daily.json에 누적한다.
- *
- * ⚠️ 주의: NIER API 가이드에 따르면 자동측정망 갱신주기는 "월 1회(3개월 전 데이터 공개)".
- *        진짜 실시간이 아니다. 그러나 데이터가 들어오면 즉시 반영하기 위해 매일 호출한다.
- *
- * 사용 측정소 (물환경_코드_코드명.xlsx에서 확인됨):
- *   S04004 옥정호      → 정읍시 정수장 원수
- *   S02011 안동        → 안동시 정수장 원수
- *   S01023 청미천      → 안성시 일죽면 (안성 인근 가장 가까운 자동측정망)
- *
- * 환경변수:
- *   DATA_GO_KR_KEY  공공데이터포털 일반 인증키(Decoding)
+ * NIER 수질자동측정망 getRealTimeWaterQualityList API 호출.
+ * 응답 구조를 로그에 그대로 찍어서 문제 진단 가능하게 함.
  */
 
 import fs from 'node:fs/promises';
@@ -52,7 +41,6 @@ function num(v) {
   return Number.isFinite(n) ? n : null;
 }
 
-// NIER 응답에서 가장 유효한 측정값 선택 (m04/m40/m71은 EC 1·2·3번 센서)
 function pickFirstValid(item, keys) {
   for (const k of keys) {
     const v = num(item[k]);
@@ -62,12 +50,12 @@ function pickFirstValid(item, keys) {
 }
 
 async function fetchSite({ regionId, siteId, siteName, source }) {
-  const { start, end } = dateRangeKST(90);
+  const { start, end } = dateRangeKST(180);  // 180일로 확대
 
   const params = new URLSearchParams({
     serviceKey: SERVICE_KEY,
     resultType: 'json',
-    numOfRows: '10',
+    numOfRows: '5',
     pageNo: '1',
     siteId: siteId,
     startDate: start,
@@ -75,30 +63,63 @@ async function fetchSite({ regionId, siteId, siteName, source }) {
   });
   const url = `http://apis.data.go.kr/1480523/WaterQualityService/getRealTimeWaterQualityList?${params}`;
 
+  console.log(`\n========== [${regionId}] site=${siteId} period=${start}~${end} ==========`);
+  console.log(`URL: ${url.replace(SERVICE_KEY, '***KEY***')}`);
+
   try {
     const res = await fetch(url, { signal: AbortSignal.timeout(30000) });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    console.log(`HTTP ${res.status} ${res.statusText}`);
+    const headers = {};
+    for (const [k, v] of res.headers.entries()) headers[k] = v;
+    console.log(`Headers: ${JSON.stringify(headers)}`);
+
+    if (!res.ok) {
+      const errText = await res.text();
+      console.error(`Error body (first 500): ${errText.slice(0, 500)}`);
+      throw new Error(`HTTP ${res.status}`);
+    }
+
     const text = await res.text();
+    console.log(`Response length: ${text.length} chars`);
+    console.log(`Response (first 1000 chars):\n${text.slice(0, 1000)}`);
+    console.log(`---`);
 
     let json;
     try {
       json = JSON.parse(text);
-    } catch {
-      console.error(`[${regionId}] non-JSON response (first 200 chars): ${text.slice(0, 200)}`);
+    } catch (e) {
+      console.error(`JSON parse failed: ${e.message}`);
+      console.error(`Looks like XML/HTML response, not JSON`);
+      return null;
+    }
+
+    // 공공데이터포털 OpenAPI 에러 봉투 (서비스키 문제 등)
+    if (json.OpenAPI_ServiceResponse) {
+      const err = json.OpenAPI_ServiceResponse.cmmMsgHeader || {};
+      console.error(`OpenAPI error envelope detected:`);
+      console.error(`  errMsg: ${err.errMsg}`);
+      console.error(`  returnAuthMsg: ${err.returnAuthMsg}`);
+      console.error(`  returnReasonCode: ${err.returnReasonCode}`);
       return null;
     }
 
     const body = json?.response?.body || json?.body;
     if (!body) {
-      console.warn(`[${regionId}] no body in response`);
+      console.warn(`No body in response.`);
+      console.warn(`Top-level keys: [${Object.keys(json).join(', ')}]`);
+      console.warn(`Full JSON (first 800): ${JSON.stringify(json).slice(0, 800)}`);
       return null;
     }
+
     let items = body.items?.item || body.items || [];
     if (!Array.isArray(items)) items = [items];
     if (items.length === 0) {
-      console.warn(`[${regionId}] no items returned (site ${siteId})`);
+      console.warn(`No items returned for site ${siteId}`);
+      console.warn(`Body: ${JSON.stringify(body).slice(0, 400)}`);
       return null;
     }
+
+    console.log(`Got ${items.length} item(s). First item keys: [${Object.keys(items[0]).slice(0, 15).join(', ')}...]`);
 
     items.sort((a, b) => String(b.msrDate || '').localeCompare(String(a.msrDate || '')));
     const it = items[0];
@@ -106,7 +127,7 @@ async function fetchSite({ regionId, siteId, siteName, source }) {
     const rawDate = String(it.msrDate || '').slice(0, 10);
     const date = rawDate || todayKST();
 
-    return {
+    const result = {
       region: regionId,
       date,
       msrDate: it.msrDate || null,
@@ -121,8 +142,10 @@ async function fetchSite({ regionId, siteId, siteName, source }) {
       residualChlorine: null,
       source
     };
+    console.log(`Parsed: pH=${result.ph}, EC=${result.ec}, turb=${result.turbidity}, DO=${result.do_}, TOC=${result.toc}, date=${result.date}`);
+    return result;
   } catch (e) {
-    console.error(`[${regionId}] fetch failed: ${e.message}`);
+    console.error(`Exception: ${e.message}`);
     return null;
   }
 }
@@ -141,8 +164,11 @@ async function main() {
   }
 
   console.log(`[daily] Fetching at KST ${todayKST()}...`);
+  console.log(`[daily] SERVICE_KEY length: ${SERVICE_KEY.length} chars, first 8: ${SERVICE_KEY.slice(0, 8)}...`);
+
   const results = await Promise.all(REGION_TO_SITE.map(fetchSite));
   const fetched = results.filter(Boolean);
+  console.log(`\n========== Summary ==========`);
   console.log(`[daily] Fetched ${fetched.length}/${REGION_TO_SITE.length} sites`);
 
   if (fetched.length === 0) {
@@ -153,7 +179,7 @@ async function main() {
   for (const m of fetched) {
     existing = existing.filter(r => !(r.region === m.region && r.date === m.date));
     existing.push(m);
-    console.log(`  + ${m.region} ${m.date} (msr=${m.msrDate}): pH=${m.ph}, EC=${m.ec}, turb=${m.turbidity}, DO=${m.do_}, TOC=${m.toc}`);
+    console.log(`  + ${m.region} ${m.date}: pH=${m.ph}, EC=${m.ec}, turb=${m.turbidity}, DO=${m.do_}, TOC=${m.toc}`);
   }
 
   existing.sort((a, b) => b.date.localeCompare(a.date) || a.region.localeCompare(b.region));
