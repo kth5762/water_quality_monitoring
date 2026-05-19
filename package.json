@@ -1,0 +1,14 @@
+{
+  "name": "water-quality-monitor",
+  "version": "1.0.0",
+  "description": "지역별 상수도 수질 모니터링 — 정읍·안동·안성",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "fetch:daily": "node scripts/fetch-data.js",
+    "fetch:monthly": "node scripts/fetch-monthly.js"
+  }
+}

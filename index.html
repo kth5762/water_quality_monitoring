@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>상수도 수질 모니터링 — 안성·정읍·안동</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.3/packages/wanted-sans/fonts/webfonts/variable/complete/WantedSansVariable.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg: #f3ede0;
+    --bg-grain: #ede6d6;
+    --card: #fbf8f0;
+    --ink: #1a1f2e;
+    --ink-soft: #4a5468;
+    --ink-mute: #8b8478;
+    --line: #ddd4be;
+    --line-strong: #c2b89e;
+    --accent: #2563a8;
+    --accent-deep: #1a4775;
+    --safe: #1f6b3e;
+    --warn: #a16207;
+    --danger: #991b1b;
+    --highlight: #fef3c7;
+    --monthly-tint: #f0e9d4;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif;
+    font-feature-settings: "ss06", "tnum";
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+  body {
+    background-image:
+      radial-gradient(at 12% 8%, rgba(37, 99, 168, 0.04) 0px, transparent 50%),
+      radial-gradient(at 88% 92%, rgba(161, 98, 7, 0.05) 0px, transparent 55%);
+  }
+  .num { font-variant-numeric: tabular-nums; font-feature-settings: "tnum" on, "ss06" on; }
+  .container { max-width: 1280px; margin: 0 auto; padding: 48px 40px 80px; }
+
+  header.masthead {
+    border-top: 3px solid var(--ink);
+    border-bottom: 1px solid var(--line-strong);
+    padding: 28px 0 24px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 32px;
+    margin-bottom: 36px;
+  }
+  .brand-block .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; font-weight: 500;
+    letter-spacing: 0.18em; color: var(--ink-mute);
+    text-transform: uppercase; margin-bottom: 12px;
+  }
+  .brand-block h1 {
+    font-family: 'Wanted Sans Variable', 'Pretendard Variable', sans-serif;
+    font-weight: 800; font-size: 52px;
+    line-height: 1.02; letter-spacing: -0.035em;
+  }
+  .brand-block h1 em { font-style: normal; font-weight: 800; color: var(--accent-deep); }
+  .brand-block .subtitle {
+    margin-top: 16px; color: var(--ink-soft);
+    font-size: 16px; letter-spacing: -0.005em; font-weight: 500;
+  }
+  .header-meta {
+    text-align: right;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; color: var(--ink-soft);
+    line-height: 1.75; font-weight: 500;
+  }
+  .live-dot {
+    display: inline-block; width: 7px; height: 7px;
+    border-radius: 50%; background: var(--safe);
+    margin-right: 6px;
+    box-shadow: 0 0 0 0 rgba(31, 107, 62, 0.6);
+    animation: pulse 2.4s infinite;
+  }
+  .live-dot.idle { background: var(--ink-mute); animation: none; }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(31,107,62,0.5); }
+    50% { box-shadow: 0 0 0 6px rgba(31,107,62,0); }
+  }
+  .header-actions {
+    display: flex; gap: 6px;
+    margin-top: 12px; justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+  .action-btn {
+    background: var(--ink); color: var(--bg);
+    border: none; padding: 9px 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.08em; cursor: pointer;
+    text-transform: uppercase; transition: all 0.2s;
+  }
+  .action-btn:hover { background: var(--accent-deep); }
+  .action-btn.secondary {
+    background: transparent; color: var(--ink);
+    border: 1px solid var(--line-strong);
+  }
+  .action-btn.secondary:hover { background: var(--ink); color: var(--bg); }
+
+  .region-tabs {
+    display: flex; border-bottom: 1px solid var(--line-strong);
+    margin-bottom: 40px; flex-wrap: wrap;
+  }
+  .region-tab {
+    background: transparent; border: none;
+    border-bottom: 2px solid transparent;
+    padding: 18px 26px; cursor: pointer;
+    font-family: inherit; font-size: 16px; font-weight: 500;
+    color: var(--ink-mute); letter-spacing: -0.01em;
+    transition: all 0.2s; margin-bottom: -1px;
+  }
+  .region-tab .tab-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 600;
+    color: var(--ink-mute); margin-right: 10px;
+    letter-spacing: 0.1em;
+  }
+  .region-tab:hover { color: var(--ink); }
+  .region-tab.active {
+    color: var(--ink); border-bottom-color: var(--ink);
+    font-weight: 700;
+  }
+  .region-tab.active .tab-num { color: var(--accent); }
+
+  .track-marker {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    padding: 5px 11px; border: 1px solid currentColor;
+  }
+  .track-marker.daily { color: var(--accent-deep); background: rgba(37,99,168,0.06); }
+  .track-marker.monthly { color: var(--warn); background: rgba(161,98,7,0.08); }
+
+  .today-block {
+    display: grid; grid-template-columns: 280px 1fr;
+    gap: 48px; padding: 36px 0 44px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 44px;
+  }
+  .today-date-pane { border-right: 1px solid var(--line); padding-right: 32px; }
+  .today-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 0.2em; color: var(--ink-mute);
+    text-transform: uppercase; margin-bottom: 14px;
+  }
+  .today-date {
+    font-family: 'Wanted Sans Variable', 'Pretendard Variable', sans-serif;
+    font-weight: 700; font-size: 42px;
+    line-height: 1.05; color: var(--ink);
+    letter-spacing: -0.03em; font-variant-numeric: tabular-nums;
+  }
+  .today-date .year {
+    display: block; font-size: 14px; font-weight: 500;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--ink-mute); margin-top: 14px;
+    letter-spacing: 0.06em;
+  }
+  .today-region-label { margin-top: 30px; padding-top: 24px; border-top: 1px dashed var(--line-strong); }
+  .today-region-label .small {
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 0.18em; color: var(--ink-mute);
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase;
+  }
+  .today-region-label .region-name {
+    font-family: 'Wanted Sans Variable', 'Pretendard Variable', sans-serif;
+    font-size: 26px; font-weight: 700;
+    margin-top: 8px; letter-spacing: -0.02em;
+  }
+  .today-region-label .station {
+    font-size: 14px; color: var(--ink-soft);
+    margin-top: 6px; line-height: 1.5;
+  }
+  .vital-source {
+    font-size: 11px; color: var(--ink-mute);
+    margin-top: 10px; font-family: 'JetBrains Mono', monospace;
+    line-height: 1.5;
+  }
+
+  .today-vitals { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+  .vital-cell { padding: 8px 0; }
+  .vital-cell + .vital-cell { padding-left: 36px; border-left: 1px solid var(--line); }
+  .vital-cell:nth-child(n+3) { padding-top: 32px; }
+  .vital-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 0.16em; color: var(--ink-mute);
+    text-transform: uppercase; margin-bottom: 10px;
+  }
+  .vital-number {
+    font-family: 'Wanted Sans Variable', 'Pretendard Variable', sans-serif;
+    font-weight: 700; font-size: 82px;
+    line-height: 0.98; letter-spacing: -0.045em;
+    color: var(--ink); font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" on, "ss06" on;
+  }
+  .vital-number.empty { color: var(--ink-mute); font-weight: 500; }
+  .vital-number .unit {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500; font-size: 16px;
+    color: var(--ink-mute); letter-spacing: 0.05em;
+    margin-left: 8px; vertical-align: 22px;
+  }
+  .vital-meta {
+    margin-top: 16px; display: flex; align-items: center;
+    gap: 14px; font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; font-weight: 500;
+    color: var(--ink-soft); flex-wrap: wrap;
+  }
+  .badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 4px 10px; font-size: 11px;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    font-weight: 700;
+  }
+  .badge-safe { background: rgba(31,107,62,0.1); color: var(--safe); }
+  .badge-warn { background: rgba(161,98,7,0.13); color: var(--warn); }
+  .badge-danger { background: rgba(153,27,27,0.12); color: var(--danger); }
+  .badge-empty { background: rgba(139,132,120,0.13); color: var(--ink-mute); }
+  .delta-up { color: var(--warn); }
+  .delta-down { color: var(--safe); }
+  .delta-flat { color: var(--ink-mute); }
+
+  .empty-state {
+    background: var(--card); border: 1px dashed var(--line-strong);
+    padding: 36px; text-align: center; color: var(--ink-soft);
+  }
+  .empty-state .icon {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 28px; color: var(--ink-mute);
+    margin-bottom: 12px; letter-spacing: 0.1em;
+  }
+  .empty-state h4 {
+    font-family: 'Wanted Sans Variable', sans-serif;
+    font-size: 17px; font-weight: 700;
+    margin-bottom: 8px; color: var(--ink);
+  }
+  .empty-state p {
+    font-size: 13px; line-height: 1.6;
+    max-width: 480px; margin: 0 auto;
+  }
+  .empty-state .small-actions {
+    margin-top: 16px; display: flex;
+    justify-content: center; gap: 8px;
+  }
+
+  .monthly-section {
+    background: var(--monthly-tint);
+    border: 1px solid var(--line-strong);
+    padding: 36px 32px 32px;
+    margin-bottom: 56px; position: relative;
+  }
+  .monthly-section::before {
+    content: ""; position: absolute;
+    top: 0; left: 0; right: 0; height: 3px;
+    background: var(--warn);
+  }
+  .monthly-head {
+    display: flex; justify-content: space-between;
+    align-items: flex-start; margin-bottom: 24px;
+    gap: 24px; flex-wrap: wrap;
+  }
+  .monthly-title {
+    font-family: 'Wanted Sans Variable', 'Pretendard Variable', sans-serif;
+    font-weight: 700; font-size: 28px;
+    letter-spacing: -0.025em; margin-bottom: 6px;
+  }
+  .monthly-sub {
+    font-size: 13px; color: var(--ink-soft); line-height: 1.6;
+  }
+  .monthly-period { text-align: right; font-family: 'JetBrains Mono', monospace; }
+  .monthly-period .label {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.14em; color: var(--ink-mute);
+    text-transform: uppercase; margin-bottom: 4px;
+  }
+  .monthly-period .value {
+    font-family: 'Wanted Sans Variable', sans-serif;
+    font-size: 22px; font-weight: 700;
+    color: var(--ink); letter-spacing: -0.02em;
+  }
+  .monthly-period .source-tag {
+    font-size: 11px; color: var(--ink-soft);
+    margin-top: 4px; font-weight: 500;
+  }
+
+  .metals-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1px; background: var(--line-strong);
+    border: 1px solid var(--line-strong);
+  }
+  .metal-card {
+    background: var(--card); padding: 22px 22px 20px;
+    min-height: 150px; display: flex;
+    flex-direction: column; justify-content: space-between;
+  }
+  .metal-card.empty { background: var(--bg-grain); }
+  .metal-head { display: flex; justify-content: space-between; align-items: flex-start; }
+  .metal-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 0.1em; color: var(--ink-soft);
+    text-transform: uppercase;
+  }
+  .metal-name .ko {
+    display: block; font-family: 'Pretendard Variable', sans-serif;
+    font-size: 13px; font-weight: 500;
+    color: var(--ink-mute); margin-top: 4px;
+    letter-spacing: -0.01em; text-transform: none;
+  }
+  .metal-value {
+    font-family: 'Wanted Sans Variable', 'Pretendard Variable', sans-serif;
+    font-weight: 700; font-size: 36px;
+    line-height: 1; margin-top: 20px;
+    letter-spacing: -0.03em;
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" on, "ss06" on;
+  }
+  .metal-value.empty { color: var(--ink-mute); font-weight: 500; }
+  .metal-value .unit {
+    font-size: 12px; font-weight: 500;
+    color: var(--ink-mute);
+    font-family: 'JetBrains Mono', monospace;
+    margin-left: 5px; vertical-align: 10px;
+  }
+  .metal-bar { margin-top: 14px; height: 3px; background: var(--line); position: relative; }
+  .metal-bar-fill {
+    position: absolute; left: 0; top: 0; bottom: 0;
+    background: var(--safe); transition: width 0.6s ease;
+  }
+  .metal-bar-fill.warn { background: var(--warn); }
+  .metal-bar-fill.danger { background: var(--danger); }
+  .metal-limit {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 500;
+    color: var(--ink-mute); margin-top: 7px;
+    display: flex; justify-content: space-between;
+  }
+  .metal-status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--safe); }
+  .metal-status-dot.warn { background: var(--warn); }
+  .metal-status-dot.danger { background: var(--danger); }
+  .metal-status-dot.empty { background: var(--ink-mute); opacity: 0.3; }
+
+  .section-title {
+    display: flex; align-items: center; gap: 16px;
+    margin-bottom: 22px; flex-wrap: wrap;
+  }
+  .section-title h2 {
+    font-family: 'Wanted Sans Variable', 'Pretendard Variable', sans-serif;
+    font-weight: 700; font-size: 30px; letter-spacing: -0.025em;
+  }
+
+  .chart-section { margin-bottom: 64px; }
+  .chart-controls { display: flex; gap: 4px; margin-bottom: 20px; flex-wrap: wrap; }
+  .chart-btn {
+    background: var(--card); border: 1px solid var(--line-strong);
+    padding: 8px 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 0.06em; color: var(--ink-soft);
+    cursor: pointer; transition: all 0.15s;
+  }
+  .chart-btn:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .chart-btn.active { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .chart-canvas-wrap {
+    background: var(--card); border: 1px solid var(--line);
+    padding: 28px; height: 360px; position: relative;
+  }
+
+  .history-section { margin-bottom: 56px; }
+  .history-table-wrap {
+    background: var(--card); border: 1px solid var(--line);
+    overflow-x: auto;
+  }
+  table.history { width: 100%; border-collapse: collapse; font-size: 14px; }
+  table.history thead th {
+    background: var(--bg-grain); padding: 14px 16px;
+    text-align: right;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 0.1em; color: var(--ink-soft);
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--line-strong);
+    white-space: nowrap;
+  }
+  table.history thead th:first-child { text-align: left; }
+  table.history thead th:last-child { text-align: left; }
+  table.history tbody td {
+    padding: 13px 16px; text-align: right;
+    border-bottom: 1px solid var(--line);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px; font-weight: 500;
+    color: var(--ink); font-variant-numeric: tabular-nums;
+  }
+  table.history tbody td:first-child { text-align: left; font-weight: 600; }
+  table.history tbody td:last-child {
+    text-align: left; color: var(--ink-soft);
+    font-size: 12px;
+  }
+  table.history tbody tr:hover { background: var(--bg-grain); }
+  table.history tbody tr.today { background: var(--highlight); }
+  table.history tbody tr.today td:first-child::before { content: "● "; color: var(--accent); }
+  table.history tbody tr:last-child td { border-bottom: none; }
+  .out-of-spec { color: var(--danger); font-weight: 700; }
+  .approaching { color: var(--warn); }
+
+  footer {
+    margin-top: 80px; padding-top: 28px;
+    border-top: 1px solid var(--line-strong);
+    font-size: 13px; color: var(--ink-mute); line-height: 1.75;
+  }
+  footer .footer-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+  }
+  footer h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--ink); margin-bottom: 12px;
+  }
+  footer code {
+    background: var(--bg-grain); padding: 2px 6px;
+    font-size: 12px; color: var(--ink-soft); font-weight: 500;
+  }
+  footer a { color: var(--accent-deep); text-decoration: none; border-bottom: 1px solid currentColor; }
+
+  .modal-backdrop {
+    position: fixed; inset: 0;
+    background: rgba(26,31,46,0.5);
+    display: none; align-items: center;
+    justify-content: center; z-index: 100;
+  }
+  .modal-backdrop.show { display: flex; }
+  .modal {
+    background: var(--card); border: 1px solid var(--line-strong);
+    max-width: 560px; width: 90%;
+    padding: 32px; max-height: 80vh; overflow-y: auto;
+  }
+  .modal h3 {
+    font-family: 'Wanted Sans Variable', sans-serif;
+    font-size: 22px; font-weight: 700;
+    margin-bottom: 8px; letter-spacing: -0.02em;
+  }
+  .modal p { font-size: 13px; color: var(--ink-soft); line-height: 1.6; margin-bottom: 14px; }
+  .modal textarea {
+    width: 100%; min-height: 200px; padding: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; border: 1px solid var(--line-strong);
+    background: var(--bg); color: var(--ink); resize: vertical;
+  }
+  .modal-actions { display: flex; gap: 8px; margin-top: 14px; justify-content: flex-end; }
+  .schema-example {
+    background: var(--bg-grain); padding: 10px 12px;
+    margin: 10px 0; font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: var(--ink-soft);
+    line-height: 1.6; border-left: 2px solid var(--accent);
+    overflow-x: auto; white-space: pre;
+  }
+
+  @media (max-width: 900px) {
+    .container { padding: 28px 20px 60px; }
+    header.masthead { grid-template-columns: 1fr; gap: 16px; }
+    .header-meta { text-align: left; }
+    .header-actions { justify-content: flex-start; }
+    .brand-block h1 { font-size: 38px; }
+    .today-block { grid-template-columns: 1fr; gap: 28px; }
+    .today-date-pane { border-right: none; border-bottom: 1px solid var(--line); padding-right: 0; padding-bottom: 24px; }
+    .vital-cell + .vital-cell { padding-left: 0; border-left: none; }
+    .vital-number { font-size: 60px; }
+    .metals-grid { grid-template-columns: repeat(2, 1fr); }
+    footer .footer-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header class="masthead">
+    <div class="brand-block">
+      <div class="eyebrow">Municipal Water Quality &middot; 지방상수도 수질 모니터</div>
+      <h1>지역별 <em>상수도</em> 수질<br>모니터링</h1>
+      <div class="subtitle">안성시 개정산업단지 · 정읍시 · 안동시 — 공공데이터 기반 이원 트랙 기록</div>
+    </div>
+    <div class="header-meta">
+      <div><span class="live-dot idle" id="status-dot"></span><span id="connection-status">API 미연동 상태</span></div>
+      <div id="last-sync">마지막 갱신: —</div>
+      <div>일간 기록: <span id="total-days" class="num">0일</span></div>
+      <div class="header-actions">
+        <button class="action-btn secondary" onclick="openImport('daily')">+ 일간 임포트</button>
+        <button class="action-btn secondary" onclick="openImport('monthly')">+ 월간 임포트</button>
+        <button class="action-btn" onclick="autoLoadFromRepository().then(()=>{updateSyncInfo();render();})">↻ 새로고침</button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="region-tabs" id="region-tabs"></nav>
+
+  <div style="margin-bottom: 16px;"><span class="track-marker daily">● Daily Track · 일간 측정</span></div>
+  <section class="today-block" id="today-block"></section>
+
+  <div style="margin-bottom: 16px;"><span class="track-marker monthly">○ Monthly Disclosure · 월간 공시</span></div>
+  <section id="monthly-section"></section>
+
+  <section class="chart-section">
+    <div class="section-title"><h2>일간 측정 추이</h2></div>
+    <div class="chart-controls" id="chart-controls">
+      <button class="chart-btn active" data-metric="ph">pH</button>
+      <button class="chart-btn" data-metric="ec">전기전도도 (EC)</button>
+      <button class="chart-btn" data-metric="turbidity">탁도</button>
+      <button class="chart-btn" data-metric="do_">DO</button>
+      <button class="chart-btn" data-metric="toc">TOC</button>
+    </div>
+    <div class="chart-canvas-wrap"><canvas id="trend-chart"></canvas></div>
+  </section>
+
+  <section class="history-section">
+    <div class="section-title"><h2>일자별 누적 기록</h2></div>
+    <div class="history-table-wrap">
+      <table class="history" id="daily-history-table">
+        <thead>
+          <tr>
+            <th>측정일</th>
+            <th>pH</th>
+            <th>EC (μS/cm)</th>
+            <th>탁도 (NTU)</th>
+            <th>DO (mg/L)</th>
+            <th>TOC (mg/L)</th>
+            <th>판정</th>
+            <th>출처</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="history-section">
+    <div class="section-title"><h2>월간 공시 이력</h2></div>
+    <div class="history-table-wrap">
+      <table class="history" id="monthly-history-table">
+        <thead>
+          <tr>
+            <th>공시월</th>
+            <th>경도 (mg/L)</th>
+            <th>Fe (mg/L)</th>
+            <th>Mn (mg/L)</th>
+            <th>Cu (mg/L)</th>
+            <th>Zn (mg/L)</th>
+            <th>Pb (mg/L)</th>
+            <th>As (mg/L)</th>
+            <th>Al (mg/L)</th>
+            <th>출처</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <h4>일간 데이터 소스 (Daily Track)</h4>
+        <p>K-water <strong>실시간 수도정보 수질(시간)</strong> — <code>apis.data.go.kr/B500001/rwis/waterQuality/list</code> · 잔류염소·pH·탁도 1시간 단위<br>
+        K-water <strong>다목적댐 수질 자동측정</strong> — 안동댐 등 EC·pH·DO·탁도 실시간<br>
+        환경부 <strong>물환경정보시스템</strong> 자동측정망 — <code>water.nier.go.kr</code> · EC·pH·탁도·TOC 실시간<br>
+        환경부 <strong>수질 DB</strong> — <code>apis.data.go.kr/1480523/WaterQualityService</code></p>
+      </div>
+      <div>
+        <h4>월간 데이터 소스 (Monthly Track)</h4>
+        <p>공공데이터포털 <strong>전국상수도수질검사 표준데이터</strong> — data.go.kr/15013114 · 경도·금속 60항목 월간/분기<br>각 지자체 <strong>수돗물 품질보고서</strong> (PDF 공시)</p>
+      </div>
+      <div>
+        <h4>운영 안내</h4>
+        <p>브라우저 단독으론 공공API 직접 호출이 CORS로 차단됨. 운영 시 백엔드 프록시 필수.<br>현재는 <strong>임포트 버튼</strong>으로 JSON 적재 가능.</p>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<div class="modal-backdrop" id="import-modal">
+  <div class="modal">
+    <h3 id="import-title">데이터 임포트</h3>
+    <p id="import-desc"></p>
+    <div class="schema-example" id="import-schema"></div>
+    <textarea id="import-textarea" placeholder="JSON 데이터를 붙여넣으세요..."></textarea>
+    <div class="modal-actions">
+      <button class="action-btn secondary" onclick="closeImport()">취소</button>
+      <button class="action-btn" onclick="submitImport()">적재</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const REGIONS = [
+  {
+    id: 'anseong',
+    name: '안성시 개정산업단지',
+    nameEn: 'Anseong-si · Gaejeong Industrial Complex',
+    station: '평택광역상수도 (수원: 팔당호) + 지하수 보조',
+    sido: '경기',
+    kwaterStnId: null, nierStnCode: null, plantCode: '2-013-01',
+    sources: {
+      daily: 'K-water 실시간 수도정보 수질 / 평택광역상수도',
+      monthly: '안성시 상하수도사업소 수돗물 품질보고서'
+    }
+  },
+  {
+    id: 'jeongeup',
+    name: '정읍시',
+    nameEn: 'Jeongeup-si',
+    station: '정읍정수장 (수원: 옥정호·동진강)',
+    sido: '전북',
+    kwaterStnId: null, nierStnCode: null, plantCode: '2-024-01',
+    sources: {
+      daily: '환경부 물환경정보시스템 (옥정호 자동측정망)',
+      monthly: '정읍시 상하수도사업소 수돗물 품질보고서'
+    }
+  },
+  {
+    id: 'andong',
+    name: '안동시',
+    nameEn: 'Andong-si',
+    station: '안동정수장 (수원: 안동댐)',
+    sido: '경북',
+    kwaterStnId: null, nierStnCode: null, damCode: '2001110', plantCode: '2-038-01',
+    sources: {
+      daily: 'K-water 다목적댐 수질 자동측정 (안동댐)',
+      monthly: '안동시 상하수도사업소 수돗물 품질보고서'
+    }
+  }
+];
+
+const LIMITS = {
+  // === Daily Track (NIER 자동측정망) ===
+  ph:               { min: 5.8, max: 8.5, unit: '',       name: 'pH',         en: 'pH',           track: 'daily' },
+  ec:               { limit: 800,         unit: 'μS/cm',  name: '전기전도도', en: 'EC',           track: 'daily' },
+  turbidity:        { limit: 0.5,         unit: 'NTU',    name: '탁도',       en: 'Turbidity',    track: 'daily' },
+  do_:              { limit: 14,          unit: 'mg/L',   name: '용존산소',   en: 'DO',           track: 'daily' },
+  toc:              { limit: 5,           unit: 'mg/L',   name: '총유기탄소', en: 'TOC',          track: 'daily' },
+  // === Monthly Track (상수도법정수질정보) ===
+  hardness:         { limit: 300,         unit: 'mg/L',   name: '경도',       en: 'Hardness',     track: 'monthly' },
+  fe:               { limit: 0.3,         unit: 'mg/L',   name: '철',         en: 'Fe',           track: 'monthly' },
+  mn:               { limit: 0.3,         unit: 'mg/L',   name: '망간',       en: 'Mn',           track: 'monthly' },
+  cu:               { limit: 1.0,         unit: 'mg/L',   name: '동(구리)',   en: 'Cu',           track: 'monthly' },
+  zn:               { limit: 3.0,         unit: 'mg/L',   name: '아연',       en: 'Zn',           track: 'monthly' },
+  pb:               { limit: 0.01,        unit: 'mg/L',   name: '납',         en: 'Pb',           track: 'monthly' },
+  as_:              { limit: 0.01,        unit: 'mg/L',   name: '비소',       en: 'As',           track: 'monthly' },
+  al:               { limit: 0.2,         unit: 'mg/L',   name: '알루미늄',   en: 'Al',           track: 'monthly' }
+};
+
+const STORAGE_KEY = 'wqm:data:v2';
+let activeRegion = REGIONS[0].id;
+let activeMetric = 'ph';
+let trendChart = null;
+let importMode = 'daily';
+
+function loadData() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return { daily: {}, monthly: {} };
+    const parsed = JSON.parse(raw);
+    return { daily: parsed.daily || {}, monthly: parsed.monthly || {} };
+  } catch (e) {
+    return { daily: {}, monthly: {} };
+  }
+}
+function saveData(data) {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }
+  catch (e) { console.error(e); }
+}
+function todayStr() {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+
+/* ============================================================================
+   Auto-load from repository (data/*.json)
+   GitHub Actions가 매일 갱신해두는 JSON 파일을 fetch.
+   같은 origin이므로 CORS 문제 없음.
+   ============================================================================ */
+async function autoLoadFromRepository(silent = false) {
+  const statusDot = document.getElementById('status-dot');
+  const statusText = document.getElementById('connection-status');
+  if (!silent) statusText.textContent = '자동 동기화 중...';
+
+  let dailyLoaded = 0, monthlyLoaded = 0;
+  let dailyLatest = null;
+
+  try {
+    const ts = Date.now();
+    const dailyRes = await fetch(`./data/daily.json?t=${ts}`, { cache: 'no-store' });
+    if (dailyRes.ok) {
+      const items = await dailyRes.json();
+      dailyLoaded = mergeImportedData('daily', items);
+      // Find latest date
+      if (Array.isArray(items) && items.length) {
+        dailyLatest = items.map(i => i.date).sort().pop();
+      }
+    }
+  } catch (e) { console.warn('daily.json 로드 실패:', e.message); }
+
+  try {
+    const ts = Date.now();
+    const monthlyRes = await fetch(`./data/monthly.json?t=${ts}`, { cache: 'no-store' });
+    if (monthlyRes.ok) {
+      const items = await monthlyRes.json();
+      monthlyLoaded = mergeImportedData('monthly', items);
+    }
+  } catch (e) { console.warn('monthly.json 로드 실패:', e.message); }
+
+  if (dailyLoaded > 0 || monthlyLoaded > 0) {
+    statusDot.className = 'live-dot';
+    statusText.textContent = `자동 동기화 활성 · 최신 ${dailyLatest || '확인 중'}`;
+    return true;
+  } else {
+    statusDot.className = 'live-dot idle';
+    statusText.textContent = '데이터 파일 미발견 — 임포트 필요';
+    return false;
+  }
+}
+
+function mergeImportedData(track, items) {
+  if (!Array.isArray(items)) items = [items];
+  const data = loadData();
+  let added = 0;
+
+  for (const item of items) {
+    const regionId = item.region;
+    if (!REGIONS.find(r => r.id === regionId)) continue;
+
+    if (track === 'daily') {
+      if (!item.date) continue;
+      if (!data.daily[regionId]) data.daily[regionId] = [];
+      data.daily[regionId] = data.daily[regionId].filter(r => r.date !== item.date);
+      data.daily[regionId].push({
+        date: item.date,
+        ph: item.ph ?? null,
+        ec: item.ec ?? null,
+        turbidity: item.turbidity ?? null,
+        do_: item.do_ ?? null,
+        toc: item.toc ?? null,
+        temp: item.temp ?? null,
+        msrDate: item.msrDate ?? null,
+        siteId: item.siteId ?? null,
+        siteName: item.siteName ?? null,
+        source: item.source || REGIONS.find(r => r.id === regionId).sources.daily
+      });
+      data.daily[regionId].sort((a,b) => a.date.localeCompare(b.date));
+    } else {
+      if (!item.period) continue;
+      if (!data.monthly[regionId]) data.monthly[regionId] = [];
+      data.monthly[regionId] = data.monthly[regionId].filter(r => r.period !== item.period);
+      data.monthly[regionId].push({
+        period: item.period,
+        facility: item.facility ?? null,
+        collectedAt: item.collectedAt ?? null,
+        hardness: item.hardness ?? null,
+        ph: item.ph ?? null,
+        fe: item.fe ?? null,
+        mn: item.mn ?? null,
+        cu: item.cu ?? null,
+        zn: item.zn ?? null,
+        pb: item.pb ?? null,
+        as_: item.as_ ?? null,
+        cd: item.cd ?? null,
+        hg: item.hg ?? null,
+        cr: item.cr ?? null,
+        al: item.al ?? null,
+        turbidity: item.turbidity ?? null,
+        rc: item.rc ?? null,
+        cl: item.cl ?? null,
+        source: item.source || REGIONS.find(r => r.id === regionId).sources.monthly,
+        publishedAt: item.publishedAt || null
+      });
+      data.monthly[regionId].sort((a,b) => a.period.localeCompare(b.period));
+    }
+    added++;
+  }
+  saveData(data);
+  return added;
+}
+
+/* ============================================================================
+   Public API Integration — production wiring requires backend proxy + service key
+   No synthetic data is generated.
+   ============================================================================ */
+async function fetchDailyData(regionId) {
+  const region = REGIONS.find(r => r.id === regionId);
+  const SERVICE_KEY = ''; // ← 공공데이터포털 서비스키 입력
+
+  if (!SERVICE_KEY) {
+    throw new Error('SERVICE_KEY 미설정');
+  }
+  const url = buildDailyApiUrl(region, SERVICE_KEY);
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`API ${res.status}`);
+  const json = await res.json();
+  return parseDailyApiResponse(region, json);
+}
+function buildDailyApiUrl(region, key) {
+  if (region.id === 'anseong' && region.kwaterStnId) {
+    return `http://apis.data.go.kr/B500001/rwis/waterQuality/list?serviceKey=${key}&stnId=${region.kwaterStnId}&_type=json&numOfRows=24`;
+  }
+  if (region.id === 'andong' && region.damCode) {
+    return `http://apis.data.go.kr/B500001/damWaterQuality/list?serviceKey=${key}&damCode=${region.damCode}&_type=json`;
+  }
+  if (region.id === 'jeongeup' && region.nierStnCode) {
+    return `http://apis.data.go.kr/1480523/WaterQualityService/getRealtime?serviceKey=${key}&ptNo=${region.nierStnCode}`;
+  }
+  throw new Error('정수장/측정망 코드 매핑 필요');
+}
+function parseDailyApiResponse(region, json) {
+  // Production: shape-specific parsing per API
+  return {
+    date: todayStr(),
+    ph: null, ec: null, turbidity: null, residualChlorine: null,
+    source: region.sources.daily
+  };
+}
+
+async function syncDailyData() {
+  const statusDot = document.getElementById('status-dot');
+  const statusText = document.getElementById('connection-status');
+  statusDot.className = 'live-dot';
+  statusText.textContent = 'API 호출 중...';
+
+  let success = 0, failed = 0;
+  const errors = [];
+  for (const region of REGIONS) {
+    try {
+      const m = await fetchDailyData(region.id);
+      const data = loadData();
+      if (!data.daily[region.id]) data.daily[region.id] = [];
+      data.daily[region.id] = data.daily[region.id].filter(r => r.date !== m.date);
+      data.daily[region.id].push(m);
+      data.daily[region.id].sort((a,b) => a.date.localeCompare(b.date));
+      saveData(data);
+      success++;
+    } catch (e) {
+      failed++;
+      errors.push(`${region.name}: ${e.message}`);
+    }
+  }
+  if (success === 0) {
+    statusDot.className = 'live-dot idle';
+    statusText.textContent = `API 미연동 (${failed}건 실패)`;
+    alert('공공API 호출 실패\n\n' + errors.join('\n') + '\n\n해결 방법:\n1) data.go.kr 서비스키 발급 → 코드 SERVICE_KEY 입력\n2) 백엔드 프록시 (CORS 우회)\n3) 임포트 버튼으로 수동 적재');
+  } else {
+    statusDot.className = 'live-dot';
+    statusText.textContent = `연동됨 (${success}/${REGIONS.length})`;
+  }
+  updateSyncInfo();
+  render();
+}
+
+/* Import */
+function openImport(mode) {
+  importMode = mode;
+  const modal = document.getElementById('import-modal');
+  const title = document.getElementById('import-title');
+  const desc = document.getElementById('import-desc');
+  const schema = document.getElementById('import-schema');
+  const textarea = document.getElementById('import-textarea');
+
+  if (mode === 'daily') {
+    title.textContent = '일간 측정 데이터 임포트';
+    desc.innerHTML = '공공API에서 받은 일간 측정치를 JSON으로 붙여넣으세요. <code>region</code>은 anseong / jeongeup / andong, <code>date</code>는 YYYY-MM-DD.';
+    schema.textContent = '[\n  { "region": "anseong", "date": "2026-05-19",\n    "ph": 7.2, "ec": 285,\n    "turbidity": 0.08, "residualChlorine": 0.65,\n    "source": "K-water 평택광역상수도" },\n  { "region": "andong", "date": "2026-05-19",\n    "ph": 7.0, "ec": 112,\n    "turbidity": 0.05, "residualChlorine": 0.55,\n    "source": "K-water 안동댐 자동측정" }\n]';
+  } else {
+    title.textContent = '월간 공시 데이터 임포트';
+    desc.innerHTML = '공공데이터포털 또는 지자체 수돗물 품질보고서에서 받은 월간 공시 값을 붙여넣으세요. <code>period</code>는 YYYY-MM.';
+    schema.textContent = '[\n  { "region": "anseong", "period": "2026-04",\n    "hardness": 95, "ca": 24.1, "mg": 8.8,\n    "fe": 0.03, "mn": 0.02, "cu": 0.015,\n    "zn": 0.025, "pb": 0.0008,\n    "source": "안성시 상하수도사업소 / 2026.04 품질보고서",\n    "publishedAt": "2026-05-10" }\n]';
+  }
+  textarea.value = '';
+  modal.classList.add('show');
+}
+function closeImport() {
+  document.getElementById('import-modal').classList.remove('show');
+}
+function submitImport() {
+  const textarea = document.getElementById('import-textarea');
+  let parsed;
+  try {
+    parsed = JSON.parse(textarea.value);
+    if (!Array.isArray(parsed)) parsed = [parsed];
+  } catch (e) {
+    alert('JSON 파싱 실패: ' + e.message);
+    return;
+  }
+  const data = loadData();
+  let added = 0;
+  for (const item of parsed) {
+    const regionId = item.region;
+    if (!REGIONS.find(r => r.id === regionId)) continue;
+    if (importMode === 'daily') {
+      if (!item.date) continue;
+      if (!data.daily[regionId]) data.daily[regionId] = [];
+      data.daily[regionId] = data.daily[regionId].filter(r => r.date !== item.date);
+      data.daily[regionId].push({
+        date: item.date,
+        ph: item.ph ?? null, ec: item.ec ?? null,
+        turbidity: item.turbidity ?? null,
+        do_: item.do_ ?? null, toc: item.toc ?? null,
+        msrDate: item.msrDate ?? null,
+        siteId: item.siteId ?? null,
+        siteName: item.siteName ?? null,
+        source: item.source || REGIONS.find(r => r.id === regionId).sources.daily
+      });
+      data.daily[regionId].sort((a,b) => a.date.localeCompare(b.date));
+    } else {
+      if (!item.period) continue;
+      if (!data.monthly[regionId]) data.monthly[regionId] = [];
+      data.monthly[regionId] = data.monthly[regionId].filter(r => r.period !== item.period);
+      data.monthly[regionId].push({
+        period: item.period,
+        facility: item.facility ?? null,
+        hardness: item.hardness ?? null,
+        fe: item.fe ?? null, mn: item.mn ?? null,
+        cu: item.cu ?? null, zn: item.zn ?? null,
+        pb: item.pb ?? null, as_: item.as_ ?? null, al: item.al ?? null,
+        source: item.source || REGIONS.find(r => r.id === regionId).sources.monthly,
+        publishedAt: item.publishedAt || null
+      });
+      data.monthly[regionId].sort((a,b) => a.period.localeCompare(b.period));
+    }
+    added++;
+  }
+  saveData(data);
+  closeImport();
+  updateSyncInfo();
+  render();
+  alert(`${added}건 적재 완료`);
+}
+
+function statusOf(metricKey, value) {
+  if (value === null || value === undefined) return 'empty';
+  const def = LIMITS[metricKey];
+  if (def.min !== undefined && def.max !== undefined) {
+    if (value < def.min || value > def.max) return 'danger';
+    const slack = (def.max - def.min) * 0.1;
+    if (value < def.min + slack || value > def.max - slack) return 'warn';
+    return 'safe';
+  }
+  if (def.limit !== undefined) {
+    if (value > def.limit) return 'danger';
+    if (value > def.limit * 0.7) return 'warn';
+    return 'safe';
+  }
+  return 'safe';
+}
+function statusBadge(s) {
+  if (s === 'danger') return '<span class="badge badge-danger">기준초과</span>';
+  if (s === 'warn') return '<span class="badge badge-warn">주의</span>';
+  if (s === 'empty') return '<span class="badge badge-empty">데이터없음</span>';
+  return '<span class="badge badge-safe">적합</span>';
+}
+function overallDailyStatus(r) {
+  let worst = 'safe';
+  for (const k of ['ph','ec','turbidity','do_','toc']) {
+    const s = statusOf(k, r[k]);
+    if (s === 'danger') worst = 'danger';
+    else if (s === 'warn' && worst !== 'danger') worst = 'warn';
+    else if (s === 'empty' && worst === 'safe') worst = 'empty';
+  }
+  return worst;
+}
+function updateSyncInfo() {
+  const data = loadData();
+  const total = data.daily[REGIONS[0].id]?.length || 0;
+  const now = new Date();
+  const hh = String(now.getHours()).padStart(2,'0');
+  const mm = String(now.getMinutes()).padStart(2,'0');
+  document.getElementById('last-sync').textContent = `마지막 갱신: ${todayStr()} ${hh}:${mm}`;
+  document.getElementById('total-days').textContent = `${total}일`;
+}
+
+function renderTabs() {
+  const nav = document.getElementById('region-tabs');
+  nav.innerHTML = REGIONS.map((r, i) => `
+    <button class="region-tab ${r.id === activeRegion ? 'active' : ''}" data-region="${r.id}">
+      <span class="tab-num">0${i+1}</span>${r.name}
+    </button>
+  `).join('');
+  nav.querySelectorAll('.region-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeRegion = btn.dataset.region;
+      render();
+    });
+  });
+}
+
+function renderToday() {
+  const region = REGIONS.find(r => r.id === activeRegion);
+  const data = loadData();
+  const records = data.daily[activeRegion] || [];
+  const todayRec = records[records.length - 1];
+  const prevRec = records[records.length - 2];
+
+  const dateNow = new Date();
+  const monthName = ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'][dateNow.getMonth()];
+  const dayOfWeek = ['일','월','화','수','목','금','토'][dateNow.getDay()];
+
+  if (!todayRec) {
+    document.getElementById('today-block').innerHTML = `
+      <div class="today-date-pane">
+        <div class="today-label">Today · 당일 측정치</div>
+        <div class="today-date">${monthName}<br>${dateNow.getDate()}일 <span style="color:var(--ink-mute);">(${dayOfWeek})</span>
+          <span class="year">${dateNow.getFullYear()} · 누적 0일</span>
+        </div>
+        <div class="today-region-label">
+          <div class="small">${region.sido} · Station</div>
+          <div class="region-name">${region.name}</div>
+          <div class="station">${region.station}</div>
+        </div>
+      </div>
+      <div>
+        <div class="empty-state">
+          <div class="icon">— —</div>
+          <h4>일간 측정 데이터 없음</h4>
+          <p>공공API 연동 또는 임포트 후 표시됩니다.<br>출처: ${region.sources.daily}</p>
+          <div class="small-actions">
+            <button class="action-btn" onclick="openImport('daily')">+ 데이터 임포트</button>
+          </div>
+        </div>
+      </div>
+    `;
+    return;
+  }
+
+  const delta = (k, dp) => {
+    if (!prevRec || todayRec[k] === null || prevRec[k] === null) return '';
+    const d = todayRec[k] - prevRec[k];
+    if (Math.abs(d) < Math.pow(10, -dp-1)) return `<span class="delta-flat">→ 변동없음</span>`;
+    const pct = ((d / prevRec[k]) * 100).toFixed(1);
+    if (d > 0) return `<span class="delta-up">▲ +${pct}%</span>`;
+    return `<span class="delta-down">▼ ${pct}%</span>`;
+  };
+
+  const vital = (k, val, dp) => {
+    const s = statusOf(k, val);
+    const def = LIMITS[k];
+    return `
+      <div class="vital-cell">
+        <div class="vital-label">${def.name} &middot; ${def.en}</div>
+        <div class="vital-number ${val === null ? 'empty' : ''}">${val === null ? '—' : Number(val).toFixed(dp)}<span class="unit">${def.unit}</span></div>
+        <div class="vital-meta">${statusBadge(s)} ${delta(k, dp)}</div>
+      </div>
+    `;
+  };
+
+  document.getElementById('today-block').innerHTML = `
+    <div class="today-date-pane">
+      <div class="today-label">Today · 당일 측정치</div>
+      <div class="today-date">
+        ${monthName}<br>${dateNow.getDate()}일 <span style="color:var(--ink-mute);">(${dayOfWeek})</span>
+        <span class="year">${dateNow.getFullYear()} · 누적 ${records.length}일</span>
+      </div>
+      <div class="today-region-label">
+        <div class="small">${region.sido} · Station</div>
+        <div class="region-name">${region.name}</div>
+        <div class="station">${region.station}</div>
+        <div class="vital-source">출처: ${todayRec.source || region.sources.daily}</div>
+      </div>
+    </div>
+    <div class="today-vitals">
+      ${vital('ph', todayRec.ph, 2)}
+      ${vital('ec', todayRec.ec, 0)}
+      ${vital('turbidity', todayRec.turbidity, 3)}
+      ${vital('do_', todayRec.do_, 2)}
+    </div>
+  `;
+}
+
+function renderMonthly() {
+  const region = REGIONS.find(r => r.id === activeRegion);
+  const data = loadData();
+  const records = data.monthly[activeRegion] || [];
+  const latest = records[records.length - 1];
+  const monthlySection = document.getElementById('monthly-section');
+
+  if (!latest) {
+    monthlySection.innerHTML = `
+      <div class="monthly-section">
+        <div class="monthly-head">
+          <div>
+            <div class="monthly-title">월간 공시 — 경도 · 금속 · EC</div>
+            <div class="monthly-sub">${region.sources.monthly}<br>경도·중금속은 월 1회 또는 분기 1회 공시</div>
+          </div>
+        </div>
+        <div class="empty-state">
+          <div class="icon">○ ○ ○</div>
+          <h4>월간 공시 데이터 없음</h4>
+          <p>공공데이터포털 전국상수도수질검사 표준데이터 (data.go.kr/15013114) 또는 ${region.sources.monthly}에서 받은 값을 임포트하세요.</p>
+          <div class="small-actions">
+            <button class="action-btn" onclick="openImport('monthly')">+ 월간 공시 임포트</button>
+          </div>
+        </div>
+      </div>
+    `;
+    return;
+  }
+
+  const metals = ['hardness', 'fe', 'mn', 'cu', 'zn', 'pb', 'as_', 'al'];
+  monthlySection.innerHTML = `
+    <div class="monthly-section">
+      <div class="monthly-head">
+        <div>
+          <div class="monthly-title">월간 공시 — 경도 · 금속 · EC</div>
+          <div class="monthly-sub">월 1회 또는 분기 1회 공시되는 법정 검사 결과<br>출처: ${latest.source}</div>
+        </div>
+        <div class="monthly-period">
+          <div class="label">측정 기준월</div>
+          <div class="value">${latest.period}</div>
+          ${latest.publishedAt ? `<div class="source-tag">공시일: ${latest.publishedAt}</div>` : ''}
+        </div>
+      </div>
+      <div class="metals-grid">
+        ${metals.map(k => {
+          const def = LIMITS[k];
+          const val = latest[k];
+          const s = statusOf(k, val);
+          const pct = val !== null && val !== undefined ? Math.min(100, (val / def.limit) * 100) : 0;
+          return `
+            <div class="metal-card ${val === null || val === undefined ? 'empty' : ''}">
+              <div>
+                <div class="metal-head">
+                  <div class="metal-name">${def.en}<span class="ko">${def.name}</span></div>
+                  <div class="metal-status-dot ${s === 'empty' ? 'empty' : (s !== 'safe' ? s : '')}"></div>
+                </div>
+                <div class="metal-value ${val === null || val === undefined ? 'empty' : ''}">${val === null || val === undefined ? '—' : (val < 0.01 ? Number(val).toFixed(4) : Number(val).toFixed(3))}<span class="unit">${def.unit}</span></div>
+              </div>
+              <div>
+                <div class="metal-bar"><div class="metal-bar-fill ${s === 'safe' ? '' : (s === 'empty' ? '' : s)}" style="width:${pct}%"></div></div>
+                <div class="metal-limit"><span>현재</span><span>기준 ${def.limit} ${def.unit}</span></div>
+              </div>
+            </div>
+          `;
+        }).join('')}
+      </div>
+    </div>
+  `;
+}
+
+function renderChart() {
+  const data = loadData();
+  const records = (data.daily[activeRegion] || []).slice(-30);
+  const ctx = document.getElementById('trend-chart').getContext('2d');
+
+  if (trendChart) { trendChart.destroy(); trendChart = null; }
+
+  if (records.length === 0) {
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    ctx.font = '13px JetBrains Mono';
+    ctx.fillStyle = '#8b8478';
+    ctx.textAlign = 'center';
+    ctx.fillText('일간 측정 데이터가 없어 추이를 표시할 수 없습니다', ctx.canvas.width/2, ctx.canvas.height/2);
+    return;
+  }
+
+  const def = LIMITS[activeMetric];
+  const labels = records.map(r => {
+    const [y,m,d] = r.date.split('-'); return `${m}/${d}`;
+  });
+  const values = records.map(r => r[activeMetric]);
+
+  trendChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [{
+        label: def.name,
+        data: values,
+        borderColor: '#1a4775',
+        backgroundColor: 'rgba(37, 99, 168, 0.08)',
+        borderWidth: 2, fill: true, tension: 0.25,
+        pointRadius: 0, pointHoverRadius: 5,
+        pointBackgroundColor: '#1a4775',
+        spanGaps: true
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      interaction: { intersect: false, mode: 'index' },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#1a1f2e',
+          titleFont: { family: 'JetBrains Mono', size: 11 },
+          bodyFont: { family: 'JetBrains Mono', size: 12 },
+          padding: 10, displayColors: false,
+          callbacks: { label: (c) => `${c.parsed.y} ${def.unit}` }
+        }
+      },
+      scales: {
+        x: {
+          grid: { display: false },
+          ticks: { font: { family: 'JetBrains Mono', size: 10 }, color: '#8b8478', maxRotation: 0, autoSkip: true, maxTicksLimit: 10 }
+        },
+        y: {
+          beginAtZero: activeMetric !== 'ph',
+          grid: { color: 'rgba(0,0,0,0.04)' },
+          ticks: { font: { family: 'JetBrains Mono', size: 10 }, color: '#8b8478' }
+        }
+      }
+    }
+  });
+}
+
+function renderDailyHistory() {
+  const data = loadData();
+  const records = (data.daily[activeRegion] || []).slice().reverse();
+  const today = todayStr();
+  const tbody = document.querySelector('#daily-history-table tbody');
+
+  if (records.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="8" style="text-align:center; color:var(--ink-mute); padding:32px;">일간 측정 데이터가 없습니다</td></tr>`;
+    return;
+  }
+  tbody.innerHTML = records.slice(0, 60).map(r => {
+    const cell = (k, dp) => {
+      const v = r[k];
+      if (v === null || v === undefined) return `<td style="color:var(--ink-mute);">—</td>`;
+      const s = statusOf(k, v);
+      const cls = s === 'danger' ? 'out-of-spec' : (s === 'warn' ? 'approaching' : '');
+      return `<td class="${cls}">${Number(v).toFixed(dp)}</td>`;
+    };
+    const isToday = r.date === today;
+    return `
+      <tr class="${isToday ? 'today' : ''}">
+        <td>${r.date}${isToday ? ' <span style="color:var(--accent);font-family:JetBrains Mono;font-size:10px;letter-spacing:0.1em;">TODAY</span>' : ''}</td>
+        ${cell('ph', 2)}
+        ${cell('ec', 0)}
+        ${cell('turbidity', 3)}
+        ${cell('do_', 2)}
+        ${cell('toc', 2)}
+        <td>${statusBadge(overallDailyStatus(r))}</td>
+        <td>${r.source || '—'}</td>
+      </tr>
+    `;
+  }).join('');
+}
+
+function renderMonthlyHistory() {
+  const data = loadData();
+  const records = (data.monthly[activeRegion] || []).slice().reverse();
+  const tbody = document.querySelector('#monthly-history-table tbody');
+
+  if (records.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="10" style="text-align:center; color:var(--ink-mute); padding:32px;">월간 공시 데이터가 없습니다</td></tr>`;
+    return;
+  }
+  tbody.innerHTML = records.map(r => {
+    const cell = (k, dp) => {
+      const v = r[k];
+      if (v === null || v === undefined) return `<td style="color:var(--ink-mute);">—</td>`;
+      const s = statusOf(k, v);
+      const cls = s === 'danger' ? 'out-of-spec' : (s === 'warn' ? 'approaching' : '');
+      return `<td class="${cls}">${v < 0.01 ? Number(v).toFixed(4) : Number(v).toFixed(dp)}</td>`;
+    };
+    return `
+      <tr>
+        <td>${r.period}</td>
+        ${cell('hardness', 1)}
+        ${cell('fe', 3)}
+        ${cell('mn', 3)}
+        ${cell('cu', 3)}
+        ${cell('zn', 3)}
+        ${cell('pb', 4)}
+        ${cell('as_', 4)}
+        ${cell('al', 3)}
+        <td>${r.source || '—'}</td>
+      </tr>
+    `;
+  }).join('');
+}
+
+function render() {
+  renderTabs();
+  renderToday();
+  renderMonthly();
+  renderChart();
+  renderDailyHistory();
+  renderMonthlyHistory();
+}
+
+document.querySelectorAll('.chart-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.chart-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeMetric = btn.dataset.metric;
+    renderChart();
+  });
+});
+
+(async function init() {
+  updateSyncInfo();
+  render();
+  // Try auto-load from repository data files
+  await autoLoadFromRepository();
+  updateSyncInfo();
+  render();
+  // Re-check every 5 minutes (catches new commits from GitHub Actions)
+  setInterval(async () => {
+    await autoLoadFromRepository(true);
+    updateSyncInfo();
+    render();
+  }, 5 * 60 * 1000);
+})();
+</script>
+</body>
+</html>
