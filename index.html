@@ -191,6 +191,7 @@
     line-height: 1.5;
   }
 
+  .today-vitals-wrap { display: flex; flex-direction: column; gap: 32px; }
   .today-vitals { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
   .vital-cell { padding: 8px 0; }
   .vital-cell + .vital-cell { padding-left: 36px; border-left: 1px solid var(--line); }
@@ -234,6 +235,51 @@
   .delta-up { color: var(--warn); }
   .delta-down { color: var(--safe); }
   .delta-flat { color: var(--ink-mute); }
+
+  .monthly-mini {
+    background: rgba(161,98,7,0.04);
+    border-left: 3px solid var(--accent-amber);
+    padding: 18px 22px;
+  }
+  .monthly-mini.empty {
+    background: rgba(139,132,120,0.04);
+    border-left-color: var(--ink-mute);
+  }
+  .mini-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.14em; color: var(--accent-amber);
+    text-transform: uppercase; margin-bottom: 12px;
+  }
+  .monthly-mini.empty .mini-label { color: var(--ink-mute); }
+  .mini-empty {
+    font-size: 13px; color: var(--ink-soft);
+    font-family: 'Wanted Sans Variable', 'Pretendard Variable', sans-serif;
+    line-height: 1.5;
+  }
+  .mini-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+  .mini-cell { padding: 4px 0; }
+  .mini-cell + .mini-cell { padding-left: 20px; border-left: 1px solid var(--line); }
+  .mini-name {
+    font-family: 'Wanted Sans Variable', sans-serif;
+    font-size: 12px; font-weight: 600;
+    color: var(--ink-soft); margin-bottom: 6px;
+    letter-spacing: -0.01em;
+  }
+  .mini-value {
+    font-family: 'Wanted Sans Variable', sans-serif;
+    font-weight: 700; font-size: 32px;
+    line-height: 1; letter-spacing: -0.03em;
+    color: var(--ink); font-variant-numeric: tabular-nums;
+  }
+  .mini-value.empty { color: var(--ink-mute); font-weight: 500; }
+  .mini-unit {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500; font-size: 10px;
+    color: var(--ink-mute); letter-spacing: 0.05em;
+    margin-left: 4px; vertical-align: 6px;
+  }
+  .mini-status { margin-top: 8px; }
 
   .empty-state {
     background: var(--card); border: 1px dashed var(--line-strong);
@@ -1011,15 +1057,17 @@ function renderToday() {
   const todayRec = records[records.length - 1];
   const prevRec = records[records.length - 2];
 
-  const dateNow = new Date();
-  const monthName = ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'][dateNow.getMonth()];
-  const dayOfWeek = ['일','월','화','수','목','금','토'][dateNow.getDay()];
+  // 측정일 기준으로 라벨 표시 (NIER 자동측정망은 ~3-6개월 지연 공개)
+  const measureDate = todayRec?.date ? new Date(todayRec.date + 'T00:00:00') : null;
+  const M = ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
+  const W = ['일','월','화','수','목','금','토'];
 
   if (!todayRec) {
+    const dateNow = new Date();
     document.getElementById('today-block').innerHTML = `
       <div class="today-date-pane">
-        <div class="today-label">Today · 당일 측정치</div>
-        <div class="today-date">${monthName}<br>${dateNow.getDate()}일 <span style="color:var(--ink-mute);">(${dayOfWeek})</span>
+        <div class="today-label">Latest · 최신 공개 측정치</div>
+        <div class="today-date">${M[dateNow.getMonth()]}<br>${dateNow.getDate()}일 <span style="color:var(--ink-mute);">(${W[dateNow.getDay()]})</span>
           <span class="year">${dateNow.getFullYear()} · 누적 0일</span>
         </div>
         <div class="today-region-label">
@@ -1042,10 +1090,9 @@ function renderToday() {
     return;
   }
 
-  // 월간 데이터에서 경도 hero용 데이터 미리 추출
+  // 월간 데이터에서 경도/Fe/Mn hero 미니 카드용 추출
   const monthlyRecs = data.monthly[activeRegion] || [];
   const latestMonthly = monthlyRecs[monthlyRecs.length - 1];
-  const prevMonthly = monthlyRecs[monthlyRecs.length - 2];
 
   const delta = (k, dp) => {
     if (!prevRec || todayRec[k] === null || prevRec[k] === null) return '';
@@ -1068,40 +1115,54 @@ function renderToday() {
     `;
   };
 
-  // 월간 트랙 데이터를 hero에 표시하기 위한 변형 (delta는 이전 월간 entry와 비교)
-  const monthlyVital = (k, dp) => {
-    const def = LIMITS[k];
-    const val = latestMonthly ? (latestMonthly[k] ?? null) : null;
-    const s = statusOf(k, val);
-    let deltaHtml = '';
-    if (latestMonthly && prevMonthly && val !== null && prevMonthly[k] !== null && prevMonthly[k] !== undefined) {
-      const d = val - prevMonthly[k];
-      if (Math.abs(d) < Math.pow(10, -dp-1)) {
-        deltaHtml = `<span class="delta-flat">→ 변동없음</span>`;
-      } else {
-        const pct = ((d / prevMonthly[k]) * 100).toFixed(1);
-        deltaHtml = d > 0 ? `<span class="delta-up">▲ +${pct}%</span>` : `<span class="delta-down">▼ ${pct}%</span>`;
-      }
+  // 월간 공시 미니 카드 (안동만 데이터 있는 현재 상황에서도 일관된 디스플레이)
+  const monthlyMini = () => {
+    if (!latestMonthly) {
+      return `
+        <div class="monthly-mini empty">
+          <div class="mini-label">월간 공시 · Monthly</div>
+          <div class="mini-empty">공시 데이터 대기 중<br><span style="font-size:11px;color:var(--ink-mute);">${region.sido} ${region.name}는 K-water 시군별 조회로 등록 정수장 미확인</span></div>
+        </div>
+      `;
     }
-    const periodTag = latestMonthly?.period
-      ? `<span style="color:var(--ink-mute);font-family:JetBrains Mono,monospace;font-size:10px;margin-left:8px;">${latestMonthly.period}</span>`
-      : '';
-    const trackTag = `<span style="color:var(--accent-amber);font-size:10px;font-weight:600;letter-spacing:0.08em;margin-left:6px;">○ 월</span>`;
+    const items = [
+      { k: 'hardness', dp: 0 },
+      { k: 'fe', dp: 3 },
+      { k: 'mn', dp: 3 }
+    ];
     return `
-      <div class="vital-cell">
-        <div class="vital-label">${def.name} &middot; ${def.en}${trackTag}</div>
-        <div class="vital-number ${val === null ? 'empty' : ''}">${val === null ? '—' : Number(val).toFixed(dp)}<span class="unit">${def.unit}</span></div>
-        <div class="vital-meta">${statusBadge(s)} ${deltaHtml}${periodTag}</div>
+      <div class="monthly-mini">
+        <div class="mini-label">월간 공시 · ${latestMonthly.period}${latestMonthly.facility ? ' · ' + latestMonthly.facility : ''}</div>
+        <div class="mini-grid">
+          ${items.map(({k, dp}) => {
+            const v = latestMonthly[k];
+            const def = LIMITS[k];
+            const s = statusOf(k, v);
+            return `
+              <div class="mini-cell">
+                <div class="mini-name">${def.name}</div>
+                <div class="mini-value ${v === null ? 'empty' : ''}">${v === null ? '—' : Number(v).toFixed(dp)}<span class="mini-unit">${def.unit}</span></div>
+                <div class="mini-status">${statusBadge(s)}</div>
+              </div>
+            `;
+          }).join('')}
+        </div>
       </div>
     `;
   };
 
+  const mDay = measureDate ? measureDate.getDate() : '—';
+  const mMonth = measureDate ? M[measureDate.getMonth()] : '—';
+  const mYear = measureDate ? measureDate.getFullYear() : '—';
+  const mWeek = measureDate ? W[measureDate.getDay()] : '';
+  const lagDays = measureDate ? Math.floor((Date.now() - measureDate.getTime()) / (24*3600*1000)) : 0;
+
   document.getElementById('today-block').innerHTML = `
     <div class="today-date-pane">
-      <div class="today-label">Today · 당일 측정치</div>
+      <div class="today-label">Latest · 최신 공개 측정치</div>
       <div class="today-date">
-        ${monthName}<br>${dateNow.getDate()}일 <span style="color:var(--ink-mute);">(${dayOfWeek})</span>
-        <span class="year">${dateNow.getFullYear()} · 누적 ${records.length}일</span>
+        ${mMonth}<br>${mDay}일 <span style="color:var(--ink-mute);">(${mWeek})</span>
+        <span class="year">${mYear} · 누적 ${records.length}일${lagDays > 0 ? ' · 공개지연 ' + lagDays + '일' : ''}</span>
       </div>
       <div class="today-region-label">
         <div class="small">${region.sido} · Station</div>
@@ -1110,11 +1171,14 @@ function renderToday() {
         <div class="vital-source">출처: ${todayRec.source || region.sources.daily}</div>
       </div>
     </div>
-    <div class="today-vitals">
-      ${vital('ph', todayRec.ph, 2)}
-      ${vital('ec', todayRec.ec, 0)}
-      ${monthlyVital('hardness', 1)}
-      ${vital('do_', todayRec.do_, 2)}
+    <div class="today-vitals-wrap">
+      <div class="today-vitals">
+        ${vital('ph', todayRec.ph, 2)}
+        ${vital('ec', todayRec.ec, 0)}
+        ${vital('turbidity', todayRec.turbidity, 3)}
+        ${vital('do_', todayRec.do_, 2)}
+      </div>
+      ${monthlyMini()}
     </div>
   `;
 }
