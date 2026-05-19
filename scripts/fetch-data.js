@@ -1,9 +1,30 @@
 #!/usr/bin/env node
 /**
- * scripts/fetch-data.js (디버깅 강화판)
+ * scripts/fetch-data.js
  *
- * NIER 수질자동측정망 getRealTimeWaterQualityList API 호출.
- * 응답 구조를 로그에 그대로 찍어서 문제 진단 가능하게 함.
+ * 환경부 NIER 수질자동측정망 getRealTimeWaterQualityList API 호출.
+ *
+ * 실제 응답 구조 (가이드 문서와 다름!):
+ *   {
+ *     "getRealTimeWaterQualityList": {
+ *       "header": { "code": "00", "message": "NORMAL SERVICE" },
+ *       "item": [
+ *         { "ROWNO": 1, "SITE_ID": "S04004", "SITE_NAME": "옥정호",
+ *           "MSR_DATE": "2025-11-21",
+ *           "M01": 0, "M02": null, "M03": null, ..., "M40": 110.23, ... }
+ *       ]
+ *     }
+ *   }
+ *
+ * 필드 매핑:
+ *   M02/M38/M69 = 수온(℃)
+ *   M03/M39/M70 = pH
+ *   M04/M40/M71 = EC(μS/cm)
+ *   M05/M41/M72 = DO(mg/L)
+ *   M06/M81     = TOC(mg/L)
+ *   M79/M80/M73 = 탁도(NTU)
+ *
+ * 같은 측정 항목에 1·2·3번 센서가 있으므로 첫 유효값 사용.
  */
 
 import fs from 'node:fs/promises';
@@ -41,6 +62,7 @@ function num(v) {
   return Number.isFinite(n) ? n : null;
 }
 
+// 후보 키 리스트에서 첫 유효 측정값 반환 (1·2·3번 센서 fallback)
 function pickFirstValid(item, keys) {
   for (const k of keys) {
     const v = num(item[k]);
@@ -50,12 +72,12 @@ function pickFirstValid(item, keys) {
 }
 
 async function fetchSite({ regionId, siteId, siteName, source }) {
-  const { start, end } = dateRangeKST(180);  // 180일로 확대
+  const { start, end } = dateRangeKST(365);  // 1년 범위 (공개 지연 대응)
 
   const params = new URLSearchParams({
     serviceKey: SERVICE_KEY,
     resultType: 'json',
-    numOfRows: '5',
+    numOfRows: '30',
     pageNo: '1',
     siteId: siteId,
     startDate: start,
@@ -63,89 +85,91 @@ async function fetchSite({ regionId, siteId, siteName, source }) {
   });
   const url = `http://apis.data.go.kr/1480523/WaterQualityService/getRealTimeWaterQualityList?${params}`;
 
-  console.log(`\n========== [${regionId}] site=${siteId} period=${start}~${end} ==========`);
-  console.log(`URL: ${url.replace(SERVICE_KEY, '***KEY***')}`);
+  console.log(`[${regionId}] siteId=${siteId} range=${start.slice(0,8)}~${end.slice(0,8)}`);
 
   try {
     const res = await fetch(url, { signal: AbortSignal.timeout(30000) });
-    console.log(`HTTP ${res.status} ${res.statusText}`);
-    const headers = {};
-    for (const [k, v] of res.headers.entries()) headers[k] = v;
-    console.log(`Headers: ${JSON.stringify(headers)}`);
-
     if (!res.ok) {
       const errText = await res.text();
-      console.error(`Error body (first 500): ${errText.slice(0, 500)}`);
-      throw new Error(`HTTP ${res.status}`);
+      console.error(`[${regionId}] HTTP ${res.status}: ${errText.slice(0, 200)}`);
+      return null;
     }
-
     const text = await res.text();
-    console.log(`Response length: ${text.length} chars`);
-    console.log(`Response (first 1000 chars):\n${text.slice(0, 1000)}`);
-    console.log(`---`);
 
     let json;
     try {
       json = JSON.parse(text);
     } catch (e) {
-      console.error(`JSON parse failed: ${e.message}`);
-      console.error(`Looks like XML/HTML response, not JSON`);
+      console.error(`[${regionId}] JSON parse failed. Response: ${text.slice(0, 300)}`);
       return null;
     }
 
-    // 공공데이터포털 OpenAPI 에러 봉투 (서비스키 문제 등)
+    // 공공데이터포털 에러 봉투
     if (json.OpenAPI_ServiceResponse) {
       const err = json.OpenAPI_ServiceResponse.cmmMsgHeader || {};
-      console.error(`OpenAPI error envelope detected:`);
-      console.error(`  errMsg: ${err.errMsg}`);
-      console.error(`  returnAuthMsg: ${err.returnAuthMsg}`);
-      console.error(`  returnReasonCode: ${err.returnReasonCode}`);
+      console.error(`[${regionId}] OpenAPI error: ${err.errMsg} / ${err.returnAuthMsg} / code=${err.returnReasonCode}`);
       return null;
     }
 
-    const body = json?.response?.body || json?.body;
-    if (!body) {
-      console.warn(`No body in response.`);
-      console.warn(`Top-level keys: [${Object.keys(json).join(', ')}]`);
-      console.warn(`Full JSON (first 800): ${JSON.stringify(json).slice(0, 800)}`);
+    // === 실제 NIER 응답 구조에 맞춘 파싱 ===
+    // 루트 키는 오퍼레이션명과 동일: getRealTimeWaterQualityList
+    // header.code='00'이면 정상, item은 직접 배열
+    const root = json.getRealTimeWaterQualityList || json.response || json;
+
+    const header = root.header || {};
+    const code = header.code || header.resultCode;
+    const message = header.message || header.resultMsg;
+    if (code && code !== '00' && code !== '0') {
+      console.error(`[${regionId}] API error code ${code}: ${message}`);
       return null;
     }
 
-    let items = body.items?.item || body.items || [];
+    // item은 직접 배열, 또는 (구버전 호환) items.item 또는 items 배열
+    let items = root.item || root.items?.item || root.items || [];
     if (!Array.isArray(items)) items = [items];
     if (items.length === 0) {
-      console.warn(`No items returned for site ${siteId}`);
-      console.warn(`Body: ${JSON.stringify(body).slice(0, 400)}`);
+      console.warn(`[${regionId}] no items returned`);
       return null;
     }
 
-    console.log(`Got ${items.length} item(s). First item keys: [${Object.keys(items[0]).slice(0, 15).join(', ')}...]`);
-
-    items.sort((a, b) => String(b.msrDate || '').localeCompare(String(a.msrDate || '')));
+    // 가장 최신 MSR_DATE 항목 선택
+    items.sort((a, b) => {
+      const da = String(a.MSR_DATE || a.msrDate || '');
+      const db = String(b.MSR_DATE || b.msrDate || '');
+      return db.localeCompare(da);
+    });
     const it = items[0];
 
-    const rawDate = String(it.msrDate || '').slice(0, 10);
-    const date = rawDate || todayKST();
+    // 대문자 우선, 소문자 fallback으로 필드 접근
+    const get = (caps, low) => it[caps] !== undefined ? it[caps] : it[low];
+
+    const msrDateRaw = String(get('MSR_DATE', 'msrDate') || '');
+    const date = msrDateRaw.slice(0, 10) || todayKST();
 
     const result = {
       region: regionId,
       date,
-      msrDate: it.msrDate || null,
-      siteId: it.siteId || siteId,
-      siteName: it.siteName || siteName,
-      ph:        pickFirstValid(it, ['m03', 'm39', 'm70']),
-      ec:        pickFirstValid(it, ['m04', 'm40', 'm71']),
-      turbidity: pickFirstValid(it, ['m79', 'm80', 'm73']),
-      do_:       pickFirstValid(it, ['m05', 'm41', 'm72']),
-      toc:       pickFirstValid(it, ['m06', 'm81']),
-      temp:      pickFirstValid(it, ['m02', 'm38', 'm69']),
-      residualChlorine: null,
+      msrDate: get('MSR_DATE', 'msrDate') || null,
+      siteId: get('SITE_ID', 'siteId') || siteId,
+      siteName: get('SITE_NAME', 'siteName') || siteName,
+      // 같은 항목에 1/2/3번 센서가 있을 수 있어 첫 유효값 선택
+      ph:        pickFirstValid(it, ['M03', 'M39', 'M70', 'm03', 'm39', 'm70']),
+      ec:        pickFirstValid(it, ['M04', 'M40', 'M71', 'm04', 'm40', 'm71']),
+      turbidity: pickFirstValid(it, ['M79', 'M80', 'M73', 'm79', 'm80', 'm73']),
+      do_:       pickFirstValid(it, ['M05', 'M41', 'M72', 'm05', 'm41', 'm72']),
+      toc:       pickFirstValid(it, ['M06', 'M81', 'm06', 'm81']),
+      temp:      pickFirstValid(it, ['M02', 'M38', 'M69', 'm02', 'm38', 'm69']),
+      // 추가 항목 (참고용)
+      tn:        pickFirstValid(it, ['M27']),
+      tp:        pickFirstValid(it, ['M28']),
+      chlA:      pickFirstValid(it, ['M29']),
+      residualChlorine: null,  // NIER에 없음
       source
     };
-    console.log(`Parsed: pH=${result.ph}, EC=${result.ec}, turb=${result.turbidity}, DO=${result.do_}, TOC=${result.toc}, date=${result.date}`);
+    console.log(`[${regionId}] OK: date=${result.date}, pH=${result.ph}, EC=${result.ec}, turb=${result.turbidity}, DO=${result.do_}, TOC=${result.toc}`);
     return result;
   } catch (e) {
-    console.error(`Exception: ${e.message}`);
+    console.error(`[${regionId}] exception: ${e.message}`);
     return null;
   }
 }
@@ -164,11 +188,8 @@ async function main() {
   }
 
   console.log(`[daily] Fetching at KST ${todayKST()}...`);
-  console.log(`[daily] SERVICE_KEY length: ${SERVICE_KEY.length} chars, first 8: ${SERVICE_KEY.slice(0, 8)}...`);
-
   const results = await Promise.all(REGION_TO_SITE.map(fetchSite));
   const fetched = results.filter(Boolean);
-  console.log(`\n========== Summary ==========`);
   console.log(`[daily] Fetched ${fetched.length}/${REGION_TO_SITE.length} sites`);
 
   if (fetched.length === 0) {
@@ -179,12 +200,11 @@ async function main() {
   for (const m of fetched) {
     existing = existing.filter(r => !(r.region === m.region && r.date === m.date));
     existing.push(m);
-    console.log(`  + ${m.region} ${m.date}: pH=${m.ph}, EC=${m.ec}, turb=${m.turbidity}, DO=${m.do_}, TOC=${m.toc}`);
   }
 
   existing.sort((a, b) => b.date.localeCompare(a.date) || a.region.localeCompare(b.region));
 
-  const cutoff = new Date(Date.now() - 365 * 24 * 3600 * 1000).toISOString().slice(0, 10);
+  const cutoff = new Date(Date.now() - 730 * 24 * 3600 * 1000).toISOString().slice(0, 10);
   existing = existing.filter(r => r.date >= cutoff);
 
   await fs.writeFile(dailyFile, JSON.stringify(existing, null, 2) + '\n');
