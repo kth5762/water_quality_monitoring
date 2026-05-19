@@ -2,13 +2,13 @@
 /**
  * scripts/fetch-dam-wq.js
  *
- * 한국수자원공사 다목적댐 수질정보 (data.go.kr 15083379, odcloud API)
- * Base: https://api.odcloud.kr/api/15083379/v1/uddi:56a30e1d-f740-4637-a48c-d464a6a63c83
+ * 한국수자원공사 다목적댐 수질정보 (data.go.kr 15083379, odcloud API).
+ * 실제 응답 키 (전부 한국어):
+ *   댐명, 댐코드, 측정월, 수소이온농도지수(pH), 수온, 용존산소(DO),
+ *   생물학적 산소요구량(BOD), 화학적 산소요구량(COD), 부유물질(SS),
+ *   총질소(T-N), 총인(T-P), 인산염인(PO4-P), 전기전도도, 탁도
  *
- * 안동댐, 섬진강댐(옥정호) 데이터만 추출하여 data/dam-wq.json에 누적.
- * 응답 구조: { currentCount, data:[...], matchCount, page, perPage, totalCount }
- *
- * 첫 실행 시 응답 전체와 필드 키를 로그로 찍어 구조 확인 가능.
+ * 안동, 섬진강(옥정호) 댐만 추출하여 data/dam-wq.json 누적.
  */
 
 import fs from 'node:fs/promises';
@@ -22,10 +22,10 @@ if (!SERVICE_KEY) {
 
 const BASE_URL = 'https://api.odcloud.kr/api/15083379/v1/uddi:56a30e1d-f740-4637-a48c-d464a6a63c83';
 
-// 매칭 대상 댐
+// 정확한 댐명 매칭 (시군별 정수원)
 const TARGET_DAMS = [
-  { regionId: 'andong',   damKeywords: ['안동'],    excludeKeywords: ['임하', '안동댐2', '안동댐3'] },
-  { regionId: 'jeongeup', damKeywords: ['섬진강', '옥정'] }
+  { regionId: 'andong',   matchExact: ['안동'] },          // "안동" 정확 일치 (조정지, 임하 제외)
+  { regionId: 'jeongeup', matchExact: ['섬진강'] }         // 섬진강댐(옥정호)
 ];
 
 function num(v) {
@@ -36,20 +36,6 @@ function num(v) {
   }
   const n = parseFloat(v);
   return Number.isFinite(n) ? n : null;
-}
-
-// 어느 키든 매칭되는 값 반환 (필드명을 모를 때 후보 키 순회)
-function getField(item, candidates) {
-  for (const k of candidates) {
-    if (item[k] !== undefined && item[k] !== null && item[k] !== '') return item[k];
-  }
-  // 부분 일치도 시도
-  const lowered = candidates.map(c => c.toLowerCase());
-  for (const [k, v] of Object.entries(item)) {
-    const kl = String(k).toLowerCase();
-    if (lowered.some(c => kl.includes(c)) && v !== null && v !== '') return v;
-  }
-  return null;
 }
 
 async function fetchAllPages() {
@@ -65,7 +51,6 @@ async function fetchAllPages() {
       serviceKey: SERVICE_KEY
     });
     const url = `${BASE_URL}?${params}`;
-    console.log(`[dam-wq] fetch page=${page} perPage=${perPage}`);
 
     let res;
     try {
@@ -74,60 +59,52 @@ async function fetchAllPages() {
       console.error(`[dam-wq] fetch failed page=${page}: ${e.message}`);
       break;
     }
-
     if (!res.ok) {
-      const errText = await res.text();
-      console.error(`[dam-wq] HTTP ${res.status}: ${errText.slice(0, 300)}`);
+      console.error(`[dam-wq] HTTP ${res.status}: ${(await res.text()).slice(0, 200)}`);
       break;
     }
 
-    const text = await res.text();
     let json;
-    try {
-      json = JSON.parse(text);
-    } catch (e) {
-      console.error(`[dam-wq] JSON parse failed. Response: ${text.slice(0, 300)}`);
-      break;
-    }
+    try { json = JSON.parse(await res.text()); }
+    catch (e) { console.error(`[dam-wq] JSON parse failed page=${page}`); break; }
 
     const data = json.data || [];
     totalCount = totalCount ?? json.totalCount ?? json.matchCount;
     console.log(`[dam-wq] page=${page}: ${data.length} items (totalCount=${totalCount})`);
 
-    // 첫 페이지의 키 구조 로그 (디버깅용 1회)
-    if (page === 1 && data.length > 0) {
-      console.log(`[dam-wq] first item keys: [${Object.keys(data[0]).join(', ')}]`);
-      console.log(`[dam-wq] first item sample:\n${JSON.stringify(data[0], null, 2)}`);
-    }
-
     all.push(...data);
-    if (data.length < perPage) break;        // 마지막 페이지
+    if (data.length < perPage) break;
     if (totalCount && all.length >= totalCount) break;
-    if (page >= 20) { console.warn('[dam-wq] reached page limit 20'); break; }
+    if (page >= 20) { console.warn('[dam-wq] page limit'); break; }
     page++;
   }
-
   return all;
 }
 
-// 데이터 1건을 표준 형식으로 정규화 (필드명 후보 다양하게)
 function normalize(item, regionId) {
+  // 측정월: "2025-09-25" 형식
+  const dateRaw = String(item['측정월'] || '').trim();
+  const date = dateRaw.slice(0, 10);
+  const period = date.slice(0, 7);  // YYYY-MM
+
   return {
     region: regionId,
-    damName: getField(item, ['댐명', '시설명', '관측소명', '지점명', 'damNm', 'fcltyNm', 'damName']),
-    date:    String(getField(item, ['측정일자', '관측일자', '검사일자', '일자', 'mesureDt', 'date']) || '').slice(0, 10),
-    ph:        num(getField(item, ['pH', 'PH', '수소이온농도', 'ph'])),
-    ec:        num(getField(item, ['EC', '전기전도도', 'ec'])),
-    do_:       num(getField(item, ['DO', '용존산소', 'do', 'do_'])),
-    bod:       num(getField(item, ['BOD', '생물화학적산소요구량', 'bod'])),
-    cod:       num(getField(item, ['COD', '화학적산소요구량', 'cod'])),
-    toc:       num(getField(item, ['TOC', '총유기탄소', 'toc'])),
-    turbidity: num(getField(item, ['탁도', 'turbidity', 'TU', 'tu'])),
-    temp:      num(getField(item, ['수온', 'temperature', 'temp', 'TEMP'])),
-    tn:        num(getField(item, ['총질소', 'TN', 'T-N', 'tn'])),
-    tp:        num(getField(item, ['총인', 'TP', 'T-P', 'tp'])),
-    ss:        num(getField(item, ['SS', '부유물질', 'ss'])),
-    chlA:      num(getField(item, ['클로로필', 'Chl-a', 'chlA', 'chla']))
+    damName: item['댐명'] || null,
+    damCode: item['댐코드'] || null,
+    date,
+    period,
+    ph:        num(item['수소이온농도지수(pH)']),
+    temp:      num(item['수온']),
+    do_:       num(item['용존산소(DO)']),
+    bod:       num(item['생물학적 산소요구량(BOD)']),
+    cod:       num(item['화학적 산소요구량(COD)']),
+    ss:        num(item['부유물질(SS)']),
+    tn:        num(item['총질소(T-N)']),
+    tp:        num(item['총인(T-P)']),
+    po4p:      num(item['인산염인(PO4-P)']),
+    ec:        num(item['전기전도도']),
+    turbidity: num(item['탁도']),
+    source: '한국수자원공사 다목적댐 수질정보 (odcloud)'
   };
 }
 
@@ -136,45 +113,42 @@ async function main() {
 
   const allItems = await fetchAllPages();
   console.log(`[dam-wq] total items fetched: ${allItems.length}`);
+  if (allItems.length === 0) { console.warn('[dam-wq] no data'); process.exit(0); }
 
-  if (allItems.length === 0) {
-    console.warn('[dam-wq] no data');
-    process.exit(0);
+  // 데이터셋의 모든 unique 댐명 출력 (한 번만, 디버깅용)
+  const allDamNames = new Set();
+  for (const item of allItems) {
+    if (item['댐명']) allDamNames.add(item['댐명']);
   }
+  console.log(`[dam-wq] all dam names in dataset (${allDamNames.size}): ${Array.from(allDamNames).join(', ')}`);
 
-  // 각 region의 keyword에 매칭되는 item들 추출
+  // 정확 일치로 매칭 (트레일링 스페이스 등 trim)
   const matched = [];
   for (const target of TARGET_DAMS) {
+    let count = 0;
     for (const item of allItems) {
-      const damName = String(getField(item, ['댐명', '시설명', '관측소명', '지점명', 'damNm', 'fcltyNm']) || '');
-      const hits = target.damKeywords.some(k => damName.includes(k));
-      const excluded = (target.excludeKeywords || []).some(k => damName.includes(k));
-      if (hits && !excluded) {
+      const damName = String(item['댐명'] || '').trim();
+      if (target.matchExact.includes(damName)) {
         matched.push(normalize(item, target.regionId));
+        count++;
       }
     }
+    console.log(`[dam-wq] ${target.regionId}: matched ${count} items (${target.matchExact.join('/')})`);
   }
-  console.log(`[dam-wq] matched items: ${matched.length}`);
 
   if (matched.length === 0) {
-    // 매칭 실패 시 디버깅을 위해 모든 unique 댐명 출력
-    const allNames = new Set();
-    for (const item of allItems) {
-      const n = getField(item, ['댐명', '시설명', '관측소명', '지점명']);
-      if (n) allNames.add(n);
-    }
-    console.warn(`[dam-wq] no match. All dam/facility names in dataset:`);
-    for (const n of allNames) console.warn(`  - ${n}`);
+    console.warn(`[dam-wq] no matches with exact damName. Check the dam name list above.`);
     process.exit(0);
   }
 
-  // 날짜 최신순 정렬
+  // 날짜 최신순 정렬해서 상위 5개 미리보기
   matched.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+  console.log(`[dam-wq] sample matches (latest 5):`);
   for (const m of matched.slice(0, 5)) {
-    console.log(`  [${m.region}] ${m.damName} ${m.date}: pH=${m.ph}, DO=${m.do_}, BOD=${m.bod}, TOC=${m.toc}`);
+    console.log(`  [${m.region}/${m.damName}] ${m.date}: pH=${m.ph}, temp=${m.temp}, DO=${m.do_}, BOD=${m.bod}, COD=${m.cod}, TN=${m.tn}, TP=${m.tp}`);
   }
 
-  // 기존 데이터에 누적
+  // 누적 저장
   const dataDir = path.resolve('data');
   await fs.mkdir(dataDir, { recursive: true });
   const file = path.join(dataDir, 'dam-wq.json');
@@ -187,18 +161,22 @@ async function main() {
     console.log(`[dam-wq] starting fresh dam-wq.json`);
   }
 
-  let added = 0, updated = 0;
+  let added = 0, updated = 0, skipped = 0;
   for (const m of matched) {
-    if (!m.date) continue;
+    if (!m.date) { skipped++; continue; }
     const idx = existing.findIndex(r => r.region === m.region && r.date === m.date);
     if (idx >= 0) { existing[idx] = m; updated++; } else { existing.push(m); added++; }
   }
-  console.log(`[dam-wq] added ${added}, updated ${updated}, total ${existing.length}`);
+  console.log(`[dam-wq] added ${added}, updated ${updated}, skipped(no date) ${skipped}, total ${existing.length}`);
 
-  existing.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+  existing.sort((a, b) => (b.date || '').localeCompare(a.date || '') || a.region.localeCompare(b.region));
+
+  // 5년치만 유지
+  const cutoffYear = new Date().getFullYear() - 5;
+  existing = existing.filter(r => r.date && r.date >= `${cutoffYear}-01-01`);
 
   await fs.writeFile(file, JSON.stringify(existing, null, 2) + '\n');
-  console.log(`[dam-wq] saved to ${file}`);
+  console.log(`[dam-wq] saved ${existing.length} records to ${file}`);
 }
 
 main().catch(e => { console.error('Fatal:', e); process.exit(1); });
