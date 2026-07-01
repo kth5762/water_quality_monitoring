@@ -1,6 +1,63 @@
 [
   {
     "region": "andong",
+    "date": "2025-10-09",
+    "msrDate": "2025-10-09",
+    "siteId": "S02011",
+    "siteName": "안동",
+    "ph": 7.604166666666667,
+    "ec": 226.16666666666666,
+    "turbidity": 2.2,
+    "do_": 8.441666666666666,
+    "toc": 3.316666666666667,
+    "temp": 21.1875,
+    "tn": null,
+    "tp": null,
+    "chlA": 4.491666666666666,
+    "residualChlorine": null,
+    "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
+  },
+  {
+    "region": "anseong",
+    "date": "2025-10-09",
+    "msrDate": "2025-10-09",
+    "siteId": "S01023",
+    "siteName": "청미천",
+    "ph": 7.454166666666667,
+    "ec": 240.125,
+    "turbidity": 9.375,
+    "do_": 7.25,
+    "toc": 3.345833333333333,
+    "temp": 21.195833333333333,
+    "tn": 4.217666666666666,
+    "tp": 0.24983333333333332,
+    "chlA": null,
+    "residualChlorine": null,
+    "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
+  },
+  {
+    "region": "jeongeup",
+    "date": "2025-10-09",
+    "msrDate": "2025-10-09",
+    "siteId": "S04004",
+    "siteName": "옥정호",
+    "ph": 7.820833333333334,
+    "ec": 114.54166666666667,
+    "turbidity": 27.808333333333334,
+    "do_": 8.079166666666667,
+    "toc": 3.683333333333333,
+    "temp": 24.041666666666668,
+    "tn": 1.7999166666666666,
+    "tp": 0.014583333333333334,
+    "chlA": 32.84583333333333,
+    "residualChlorine": null,
+    "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
+  },
+  {
+    "region": "andong",
     "date": "2025-10-08",
     "msrDate": "2025-10-08",
     "siteId": "S02011",
@@ -16,7 +73,7 @@
     "chlA": 4.670833333333333,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -35,7 +92,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -54,7 +111,7 @@
     "chlA": 32.87083333333333,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -73,7 +130,7 @@
     "chlA": 4.395652173913043,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -92,7 +149,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -111,7 +168,7 @@
     "chlA": 24.347826086956523,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -130,7 +187,7 @@
     "chlA": 3.908333333333333,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -149,7 +206,7 @@
     "chlA": 1.6944444444444444,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -168,7 +225,7 @@
     "chlA": 17.691666666666666,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -187,7 +244,7 @@
     "chlA": 4.933333333333334,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -206,7 +263,7 @@
     "chlA": 0.9125,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -225,7 +282,7 @@
     "chlA": 28.470833333333335,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -244,7 +301,7 @@
     "chlA": 8.616666666666667,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -263,7 +320,7 @@
     "chlA": 0.7333333333333333,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -282,7 +339,7 @@
     "chlA": 26.533333333333335,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -301,7 +358,7 @@
     "chlA": 3.6041666666666665,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -320,7 +377,7 @@
     "chlA": 1.8791666666666667,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -339,7 +396,7 @@
     "chlA": 18.483333333333334,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -358,7 +415,7 @@
     "chlA": 3.4166666666666665,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -377,7 +434,7 @@
     "chlA": 0.41739130434782606,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -396,7 +453,7 @@
     "chlA": 37.495,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -415,7 +472,7 @@
     "chlA": 4.504166666666666,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -434,7 +491,7 @@
     "chlA": 0.4166666666666667,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -453,7 +510,7 @@
     "chlA": 29.004166666666666,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -472,7 +529,7 @@
     "chlA": 4.266666666666667,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -491,7 +548,7 @@
     "chlA": 1.0454545454545454,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -510,7 +567,7 @@
     "chlA": 20.05909090909091,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -529,7 +586,7 @@
     "chlA": 3.3956521739130436,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -548,7 +605,7 @@
     "chlA": 2.1666666666666665,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -567,7 +624,7 @@
     "chlA": 24.30909090909091,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -586,7 +643,7 @@
     "chlA": 3.4916666666666667,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -605,7 +662,7 @@
     "chlA": 2.441666666666667,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -624,7 +681,7 @@
     "chlA": 36.42916666666667,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -643,7 +700,7 @@
     "chlA": 2.9916666666666667,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -662,7 +719,7 @@
     "chlA": 1.925,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -681,7 +738,7 @@
     "chlA": 45.72857142857143,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -700,7 +757,7 @@
     "chlA": 3.441666666666667,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -719,7 +776,7 @@
     "chlA": 1.6833333333333333,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -738,7 +795,7 @@
     "chlA": 52.68695652173913,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -757,7 +814,7 @@
     "chlA": 5.569565217391304,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -776,7 +833,7 @@
     "chlA": 2.841666666666667,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -795,7 +852,7 @@
     "chlA": 36.957142857142856,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -814,7 +871,7 @@
     "chlA": 5.5625,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -833,7 +890,7 @@
     "chlA": 0.825,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -852,7 +909,7 @@
     "chlA": 39.81666666666667,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -871,7 +928,7 @@
     "chlA": 4.360869565217391,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -890,7 +947,7 @@
     "chlA": 0.6666666666666666,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -909,7 +966,7 @@
     "chlA": 45.63333333333333,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -928,7 +985,7 @@
     "chlA": 4.475,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -947,7 +1004,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -966,7 +1023,7 @@
     "chlA": 41.08181818181818,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -985,7 +1042,7 @@
     "chlA": 5.5375,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -1004,7 +1061,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -1023,7 +1080,7 @@
     "chlA": 41.37916666666667,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -1042,7 +1099,7 @@
     "chlA": 7.208333333333333,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -1061,7 +1118,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -1080,7 +1137,7 @@
     "chlA": 34.84166666666667,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -1099,7 +1156,7 @@
     "chlA": 5.1,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -1118,7 +1175,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -1137,7 +1194,7 @@
     "chlA": 30.095,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -1156,7 +1213,7 @@
     "chlA": 4.033333333333333,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -1175,7 +1232,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -1194,7 +1251,7 @@
     "chlA": 31.1125,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -1213,7 +1270,7 @@
     "chlA": 4.361111111111111,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -1232,7 +1289,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -1251,7 +1308,7 @@
     "chlA": 34.56666666666667,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -1270,7 +1327,7 @@
     "chlA": 4.086363636363636,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -1289,7 +1346,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -1308,7 +1365,7 @@
     "chlA": 34.2,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -1327,7 +1384,7 @@
     "chlA": 3.95,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -1346,7 +1403,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -1365,7 +1422,7 @@
     "chlA": 46.954166666666666,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -1384,7 +1441,7 @@
     "chlA": 4.308333333333334,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -1403,7 +1460,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -1422,7 +1479,7 @@
     "chlA": 47.958333333333336,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -1441,7 +1498,7 @@
     "chlA": 4.958333333333333,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -1460,7 +1517,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -1479,7 +1536,7 @@
     "chlA": 49.25833333333333,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -1498,7 +1555,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -1517,7 +1574,7 @@
     "chlA": 9.3125,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -1536,7 +1593,7 @@
     "chlA": 50.835,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -1555,7 +1612,7 @@
     "chlA": 4.230769230769231,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -1574,7 +1631,7 @@
     "chlA": 5.904166666666667,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -1593,7 +1650,7 @@
     "chlA": 40.19583333333333,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -1612,7 +1669,7 @@
     "chlA": 4.391666666666667,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -1631,7 +1688,7 @@
     "chlA": 6.858333333333333,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -1650,7 +1707,7 @@
     "chlA": 34.55833333333333,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -1669,7 +1726,7 @@
     "chlA": 4.51304347826087,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -1688,7 +1745,7 @@
     "chlA": 5.743478260869566,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -1707,7 +1764,7 @@
     "chlA": 31.13478260869565,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -1726,7 +1783,7 @@
     "chlA": 3.6958333333333333,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -1745,7 +1802,7 @@
     "chlA": 5.675,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -1764,7 +1821,7 @@
     "chlA": 28.225,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -1783,7 +1840,7 @@
     "chlA": 3.4375,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -1802,7 +1859,7 @@
     "chlA": 10.2,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -1821,7 +1878,7 @@
     "chlA": 43.72083333333333,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -1840,7 +1897,7 @@
     "chlA": 3.6375,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -1859,7 +1916,7 @@
     "chlA": 17.725,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -1878,7 +1935,7 @@
     "chlA": 48.50833333333333,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -1897,7 +1954,7 @@
     "chlA": 3.373913043478261,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -1916,7 +1973,7 @@
     "chlA": 13.333333333333334,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -1935,7 +1992,7 @@
     "chlA": 46.05,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -1954,7 +2011,7 @@
     "chlA": 4.258333333333334,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -1973,7 +2030,7 @@
     "chlA": 10.366666666666667,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -1992,7 +2049,7 @@
     "chlA": 62.166666666666664,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -2011,7 +2068,7 @@
     "chlA": 3.2916666666666665,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -2030,7 +2087,7 @@
     "chlA": 14.85,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -2049,7 +2106,7 @@
     "chlA": 73.77619047619048,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -2068,7 +2125,7 @@
     "chlA": 3.5238095238095237,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -2087,7 +2144,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -2106,7 +2163,7 @@
     "chlA": 73.17083333333333,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -2125,7 +2182,7 @@
     "chlA": 3.470833333333333,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -2144,7 +2201,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -2163,7 +2220,7 @@
     "chlA": 64.64761904761905,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -2182,7 +2239,7 @@
     "chlA": 3.404166666666667,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -2201,7 +2258,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -2220,7 +2277,7 @@
     "chlA": 63.07083333333333,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -2239,7 +2296,7 @@
     "chlA": 3.245833333333333,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -2258,7 +2315,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -2277,7 +2334,7 @@
     "chlA": 58.3625,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -2296,7 +2353,7 @@
     "chlA": 3.5625,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -2315,7 +2372,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -2334,7 +2391,7 @@
     "chlA": 57.80869565217391,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -2353,7 +2410,7 @@
     "chlA": 4.482608695652174,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -2372,7 +2429,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -2391,7 +2448,7 @@
     "chlA": 66.25,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -2410,7 +2467,7 @@
     "chlA": 4.404166666666667,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -2429,7 +2486,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -2448,7 +2505,7 @@
     "chlA": 67.7875,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -2467,7 +2524,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -2486,7 +2543,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -2505,7 +2562,7 @@
     "chlA": 62.97727272727273,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -2524,7 +2581,7 @@
     "chlA": 9.115,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -2543,7 +2600,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -2562,7 +2619,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -2581,7 +2638,7 @@
     "chlA": 6.564285714285714,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -2600,7 +2657,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -2619,7 +2676,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -2638,7 +2695,7 @@
     "chlA": 11.916666666666666,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -2657,7 +2714,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -2676,7 +2733,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -2695,7 +2752,7 @@
     "chlA": 6.838461538461538,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -2714,7 +2771,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -2733,7 +2790,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -2752,7 +2809,7 @@
     "chlA": 12.235,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -2771,7 +2828,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -2790,7 +2847,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -2809,7 +2866,7 @@
     "chlA": 8.245833333333334,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -2828,7 +2885,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -2847,7 +2904,7 @@
     "chlA": 88.57916666666667,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -2866,7 +2923,7 @@
     "chlA": 10.155,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -2885,7 +2942,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -2904,7 +2961,7 @@
     "chlA": 95.45652173913044,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -2923,7 +2980,7 @@
     "chlA": 8.813636363636364,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -2942,7 +2999,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -2961,7 +3018,7 @@
     "chlA": 99.7,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -2980,7 +3037,7 @@
     "chlA": 9,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -2999,7 +3056,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -3018,7 +3075,7 @@
     "chlA": 100.17083333333333,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -3037,7 +3094,7 @@
     "chlA": 6.320833333333334,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -3056,7 +3113,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -3075,7 +3132,7 @@
     "chlA": 95.25833333333334,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -3094,7 +3151,7 @@
     "chlA": 4.329166666666667,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -3113,7 +3170,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -3132,7 +3189,7 @@
     "chlA": 92.12083333333334,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -3151,7 +3208,7 @@
     "chlA": 4.936842105263158,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -3170,7 +3227,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -3189,7 +3246,7 @@
     "chlA": 87.69545454545455,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -3208,7 +3265,7 @@
     "chlA": 5.529166666666667,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -3227,7 +3284,7 @@
     "chlA": 20.475,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -3246,7 +3303,7 @@
     "chlA": 77.7,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -3265,7 +3322,7 @@
     "chlA": 5.533333333333333,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -3284,7 +3341,7 @@
     "chlA": 32.666666666666664,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -3303,7 +3360,7 @@
     "chlA": 81.26666666666667,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -3322,7 +3379,7 @@
     "chlA": 6.643478260869565,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -3341,7 +3398,7 @@
     "chlA": 31.756521739130434,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -3360,7 +3417,7 @@
     "chlA": 73.93181818181819,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -3379,7 +3436,7 @@
     "chlA": 6.545833333333333,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -3398,7 +3455,7 @@
     "chlA": 49.75,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -3417,7 +3474,7 @@
     "chlA": 65.675,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -3436,7 +3493,7 @@
     "chlA": 7.558333333333334,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -3455,7 +3512,7 @@
     "chlA": 75.7875,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -3474,7 +3531,7 @@
     "chlA": 68.3375,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -3493,7 +3550,7 @@
     "chlA": 8.013333333333334,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -3512,7 +3569,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -3531,7 +3588,7 @@
     "chlA": 62.775,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -3550,7 +3607,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -3569,7 +3626,7 @@
     "chlA": 30.1,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -3588,7 +3645,7 @@
     "chlA": 60.729166666666664,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -3607,7 +3664,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -3626,7 +3683,7 @@
     "chlA": 39.894444444444446,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -3645,7 +3702,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -3664,7 +3721,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -3683,7 +3740,7 @@
     "chlA": 27.00769230769231,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -3702,7 +3759,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -3721,7 +3778,7 @@
     "chlA": 6.96875,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -3740,7 +3797,7 @@
     "chlA": 46.09444444444444,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -3759,7 +3816,7 @@
     "chlA": 60.9375,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -3778,7 +3835,7 @@
     "chlA": 4.358333333333333,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -3797,7 +3854,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -3816,7 +3873,7 @@
     "chlA": 62.8,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -3835,7 +3892,7 @@
     "chlA": 4.9375,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -3854,7 +3911,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -3873,7 +3930,7 @@
     "chlA": 62.155,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -3892,7 +3949,7 @@
     "chlA": 4.945833333333334,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -3911,7 +3968,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -3930,7 +3987,7 @@
     "chlA": 61.582608695652176,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -3949,7 +4006,7 @@
     "chlA": 5.552173913043478,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -3968,7 +4025,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -3987,7 +4044,7 @@
     "chlA": 59.30833333333333,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -4006,7 +4063,7 @@
     "chlA": 6,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -4025,7 +4082,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -4044,7 +4101,7 @@
     "chlA": 53.33913043478261,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -4063,7 +4120,7 @@
     "chlA": 9.728571428571428,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -4082,7 +4139,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -4101,7 +4158,7 @@
     "chlA": 42.4125,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -4120,7 +4177,7 @@
     "chlA": 9.8625,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -4139,7 +4196,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -4158,7 +4215,7 @@
     "chlA": 28.10952380952381,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -4177,7 +4234,7 @@
     "chlA": 12.558333333333334,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -4196,7 +4253,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -4215,7 +4272,7 @@
     "chlA": 22.908333333333335,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -4234,7 +4291,7 @@
     "chlA": 21.725,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -4253,7 +4310,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -4272,7 +4329,7 @@
     "chlA": 25.935,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -4291,7 +4348,7 @@
     "chlA": 25.641666666666666,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -4310,7 +4367,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -4329,7 +4386,7 @@
     "chlA": 25.615,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -4348,7 +4405,7 @@
     "chlA": 13.266666666666667,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -4367,7 +4424,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -4386,7 +4443,7 @@
     "chlA": 21.233333333333334,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -4405,7 +4462,7 @@
     "chlA": 4.18,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -4424,7 +4481,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -4443,7 +4500,7 @@
     "chlA": 21.61578947368421,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -4462,7 +4519,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -4481,7 +4538,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -4500,7 +4557,7 @@
     "chlA": 27.375,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -4519,7 +4576,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -4538,7 +4595,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -4557,7 +4614,7 @@
     "chlA": 21.80666666666667,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -4576,7 +4633,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -4595,7 +4652,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -4614,7 +4671,7 @@
     "chlA": 20.2375,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -4633,7 +4690,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -4652,7 +4709,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -4671,7 +4728,7 @@
     "chlA": 25.366666666666667,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -4690,7 +4747,7 @@
     "chlA": 8.123076923076923,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -4709,7 +4766,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -4728,7 +4785,7 @@
     "chlA": 34.71818181818182,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -4747,7 +4804,7 @@
     "chlA": 7.116666666666666,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -4766,7 +4823,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -4785,7 +4842,7 @@
     "chlA": 44.55833333333333,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -4804,7 +4861,7 @@
     "chlA": 6.65,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -4823,7 +4880,7 @@
     "chlA": 23.8125,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -4842,7 +4899,7 @@
     "chlA": 60.153333333333336,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -4861,7 +4918,7 @@
     "chlA": 8.908333333333333,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -4880,7 +4937,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -4899,7 +4956,7 @@
     "chlA": 69.70416666666667,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -4918,7 +4975,7 @@
     "chlA": 12.770833333333334,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -4937,7 +4994,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -4956,7 +5013,7 @@
     "chlA": 70.06818181818181,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -4975,7 +5032,7 @@
     "chlA": 9.116666666666667,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -4994,7 +5051,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -5013,7 +5070,7 @@
     "chlA": 65.19047619047619,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -5032,7 +5089,7 @@
     "chlA": 5.775,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -5051,7 +5108,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -5070,7 +5127,7 @@
     "chlA": 62.15,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -5089,7 +5146,7 @@
     "chlA": 5.193333333333333,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -5108,7 +5165,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -5127,7 +5184,7 @@
     "chlA": 53.55238095238095,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -5146,7 +5203,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -5165,7 +5222,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -5184,7 +5241,7 @@
     "chlA": 46.02857142857143,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -5203,7 +5260,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -5222,7 +5279,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -5241,7 +5298,7 @@
     "chlA": 30.558333333333334,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -5260,7 +5317,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -5279,7 +5336,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -5298,7 +5355,7 @@
     "chlA": 24.191666666666666,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -5317,7 +5374,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -5336,7 +5393,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -5355,7 +5412,7 @@
     "chlA": 20.44782608695652,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -5374,7 +5431,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -5393,7 +5450,7 @@
     "chlA": 32.791666666666664,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -5412,7 +5469,7 @@
     "chlA": 14.179166666666667,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -5431,7 +5488,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -5450,7 +5507,7 @@
     "chlA": 43.454166666666666,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -5469,7 +5526,7 @@
     "chlA": 11.154166666666667,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -5488,7 +5545,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -5507,7 +5564,7 @@
     "chlA": 47.93043478260869,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -5526,7 +5583,7 @@
     "chlA": 8.97,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -5545,7 +5602,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -5564,7 +5621,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -5583,7 +5640,7 @@
     "chlA": 9,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
@@ -5602,7 +5659,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S02011 안동 · 안동시)",
-    "fetchedAt": "2026-06-30T02:30:07.017Z"
+    "fetchedAt": "2026-07-01T02:36:05.713Z"
   },
   {
     "region": "anseong",
@@ -5621,7 +5678,7 @@
     "chlA": null,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S01023 청미천 · 안성시 일죽면)",
-    "fetchedAt": "2026-06-30T02:30:10.609Z"
+    "fetchedAt": "2026-07-01T02:36:09.298Z"
   },
   {
     "region": "jeongeup",
@@ -5640,7 +5697,7 @@
     "chlA": 9.778260869565218,
     "residualChlorine": null,
     "source": "환경부 자동측정망 (S04004 옥정호 · 정읍시 수원)",
-    "fetchedAt": "2026-06-30T02:30:06.995Z"
+    "fetchedAt": "2026-07-01T02:36:04.872Z"
   },
   {
     "region": "andong",
